@@ -1,0 +1,178 @@
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useResults } from "@/hooks/use-results";
+import { Plus, Minus, X, Divide, Trophy, History } from "lucide-react";
+
+type Operation = 'addition' | 'subtraction' | 'multiplication' | 'division';
+
+interface MenuProps {
+  onSelectOperation: (op: Operation) => void;
+}
+
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 }
+};
+
+export function Menu({ onSelectOperation }: MenuProps) {
+  const { data: results, isLoading } = useResults();
+
+  const operations = [
+    { id: 'addition' as const, label: 'Addition', icon: Plus, color: 'bg-blue-500', shadow: 'shadow-blue-500/30' },
+    { id: 'subtraction' as const, label: 'Subtraction', icon: Minus, color: 'bg-green-500', shadow: 'shadow-green-500/30' },
+    { id: 'multiplication' as const, label: 'Multiplication', icon: X, color: 'bg-purple-500', shadow: 'shadow-purple-500/30' },
+    { id: 'division' as const, label: 'Division', icon: Divide, color: 'bg-pink-500', shadow: 'shadow-pink-500/30' },
+  ];
+
+  return (
+    <div className="w-full max-w-5xl mx-auto space-y-12">
+      <div className="text-center space-y-4">
+        <motion.h1 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-5xl md:text-7xl font-black text-foreground tracking-tight font-display"
+        >
+          Math <span className="text-primary">Practice</span> Fun!
+        </motion.h1>
+        <motion.p 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="text-xl text-muted-foreground font-medium"
+        >
+          Master your math skills with fun challenges
+        </motion.p>
+      </div>
+
+      <motion.div 
+        variants={container}
+        initial="hidden"
+        animate="show"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+      >
+        {operations.map((op) => (
+          <motion.div key={op.id} variants={item}>
+            <button
+              onClick={() => onSelectOperation(op.id)}
+              className={`w-full group relative overflow-hidden rounded-3xl p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${op.shadow} bg-white border border-border/50 text-left`}
+            >
+              <div className={`absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity`}>
+                <op.icon className="w-32 h-32 transform rotate-12" />
+              </div>
+              
+              <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl ${op.color} text-white mb-6 shadow-lg`}>
+                <op.icon className="w-8 h-8" />
+              </div>
+              
+              <h3 className="text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                {op.label}
+              </h3>
+              <p className="text-muted-foreground font-medium">
+                Practice {op.label.toLowerCase()}
+              </p>
+            </button>
+          </motion.div>
+        ))}
+      </motion.div>
+
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+        className="grid md:grid-cols-3 gap-8"
+      >
+        <Card className="md:col-span-2 border-0 shadow-xl bg-white/60 backdrop-blur-sm">
+          <CardHeader className="pb-2">
+            <CardTitle className="flex items-center gap-2 text-xl">
+              <History className="w-5 h-5 text-primary" />
+              Recent Activity
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            {isLoading ? (
+              <div className="space-y-4 mt-4">
+                {[1, 2, 3].map(i => (
+                  <div key={i} className="h-12 bg-muted/50 rounded-xl animate-pulse" />
+                ))}
+              </div>
+            ) : results && results.length > 0 ? (
+              <div className="space-y-3 mt-4">
+                {results.slice(0, 5).map((result) => (
+                  <div key={result.id} className="flex items-center justify-between p-3 rounded-xl bg-white border border-border/50 hover:border-primary/20 transition-colors">
+                    <div className="flex items-center gap-3">
+                      <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white
+                        ${result.operation === 'addition' ? 'bg-blue-500' : 
+                          result.operation === 'subtraction' ? 'bg-green-500' :
+                          result.operation === 'multiplication' ? 'bg-purple-500' : 'bg-pink-500'}`
+                      }>
+                        {result.operation === 'addition' ? '+' : 
+                         result.operation === 'subtraction' ? '-' :
+                         result.operation === 'multiplication' ? '×' : '÷'}
+                      </div>
+                      <div>
+                        <p className="font-bold capitalize text-sm">{result.operation}</p>
+                        <p className="text-xs text-muted-foreground">
+                          {new Date(result.createdAt!).toLocaleDateString()}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className={`font-black text-lg ${result.score >= 8 ? 'text-green-600' : 'text-foreground'}`}>
+                        {result.score}/{result.totalQuestions}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-8 text-muted-foreground">
+                No games played yet. Start practicing!
+              </div>
+            )}
+          </CardContent>
+        </Card>
+
+        <Card className="border-0 shadow-xl bg-gradient-to-br from-primary to-purple-600 text-white overflow-hidden relative">
+          <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-white/10 rounded-full blur-2xl" />
+          <div className="absolute bottom-0 left-0 -ml-8 -mb-8 w-32 h-32 bg-black/10 rounded-full blur-2xl" />
+          
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-xl text-white">
+              <Trophy className="w-5 h-5" />
+              Your Stats
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="relative z-10">
+            <div className="space-y-6">
+              <div>
+                <p className="text-white/80 text-sm font-medium mb-1">Total Games Played</p>
+                <p className="text-4xl font-black">{results?.length || 0}</p>
+              </div>
+              
+              <div>
+                <p className="text-white/80 text-sm font-medium mb-1">Average Score</p>
+                <p className="text-4xl font-black">
+                  {results && results.length > 0
+                    ? Math.round(results.reduce((acc, curr) => acc + (curr.score / curr.totalQuestions * 10), 0) / results.length * 10) / 10
+                    : 0}
+                  <span className="text-lg text-white/60 ml-1">/10</span>
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </motion.div>
+    </div>
+  );
+}
