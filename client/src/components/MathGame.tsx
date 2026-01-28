@@ -148,15 +148,15 @@ export function MathGame({ operation, onExit }: MathGameProps) {
             <Trophy className="w-16 h-16 text-white drop-shadow-md" />
           </motion.div>
           
-          <h2 className="text-4xl font-bold text-foreground mb-2">Game Over!</h2>
-          <p className="text-xl text-muted-foreground">You scored</p>
+          <h2 className="text-4xl font-bold text-foreground mb-2">Fim de Jogo!</h2>
+          <p className="text-xl text-muted-foreground">Sua pontuação</p>
           <div className="text-6xl font-black text-primary my-4 tracking-tighter">
             {score}/{TOTAL_QUESTIONS}
           </div>
           <p className="text-lg text-muted-foreground max-w-md mx-auto">
-            {score === 10 ? "Perfect score! You're a math wizard! 🧙‍♂️" : 
-             score >= 7 ? "Amazing job! Keep it up! 🌟" : 
-             "Good practice! Try again to improve! 💪"}
+            {score === 10 ? "Pontuação perfeita! Você é um mago da matemática! 🧙‍♂️" : 
+             score >= 7 ? "Trabalho incrível! Continue assim! 🌟" : 
+             "Bom treino! Tente novamente para melhorar! 💪"}
           </p>
         </div>
 
@@ -174,7 +174,7 @@ export function MathGame({ operation, onExit }: MathGameProps) {
             size="lg"
             className="rounded-full px-8 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/25 text-lg h-14"
           >
-            <RotateCcw className="mr-2 w-5 h-5" /> Play Again
+            <RotateCcw className="mr-2 w-5 h-5" /> Jogar Novamente
           </Button>
         </div>
       </div>
@@ -187,11 +187,11 @@ export function MathGame({ operation, onExit }: MathGameProps) {
     <div className="max-w-2xl mx-auto w-full">
       <div className="mb-8 flex items-center justify-between">
         <Button variant="ghost" size="sm" onClick={onExit} className="text-muted-foreground hover:text-foreground">
-          <Home className="w-4 h-4 mr-2" /> Quit
+          <Home className="w-4 h-4 mr-2" /> Sair
         </Button>
         <div className="flex flex-col items-end">
-          <span className="text-sm font-bold text-muted-foreground uppercase tracking-wider">Question {currentQuestionIndex + 1} of {TOTAL_QUESTIONS}</span>
-          <span className="text-xs text-muted-foreground font-medium">Score: {score}</span>
+          <span className="text-sm font-bold text-muted-foreground uppercase tracking-wider">Pergunta {currentQuestionIndex + 1} de {TOTAL_QUESTIONS}</span>
+          <span className="text-xs text-muted-foreground font-medium">Pontuação: {score}</span>
         </div>
       </div>
 
@@ -234,7 +234,7 @@ export function MathGame({ operation, onExit }: MathGameProps) {
                   disabled={!userAnswer}
                   className="w-full h-14 text-lg rounded-xl font-bold bg-primary hover:bg-primary/90 shadow-lg shadow-primary/20 hover:translate-y-[-2px] transition-all"
                 >
-                  Check Answer
+                  Verificar Resposta
                 </Button>
               </>
             ) : (
@@ -250,13 +250,13 @@ export function MathGame({ operation, onExit }: MathGameProps) {
                     <XCircle className="w-8 h-8 text-red-600" />
                   )}
                   <span className={`text-2xl font-bold ${feedback === 'correct' ? 'text-green-700' : 'text-red-700'}`}>
-                    {feedback === 'correct' ? "Correct!" : "Oops!"}
+                    {feedback === 'correct' ? "Correto!" : "Ops!"}
                   </span>
                 </div>
                 
                 {feedback === 'wrong' && (
                   <p className="text-lg text-red-600 mb-4 font-medium">
-                    The correct answer is <span className="font-bold text-xl">{currentQuestion.answer}</span>
+                    A resposta correta é <span className="font-bold text-xl">{currentQuestion.answer}</span>
                   </p>
                 )}
 
@@ -269,7 +269,7 @@ export function MathGame({ operation, onExit }: MathGameProps) {
                       : 'bg-primary hover:bg-primary/90 shadow-primary/20'
                   }`}
                 >
-                  Next Question <ArrowRight className="ml-2 w-5 h-5" />
+                  Próxima Pergunta <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </motion.div>
             )}

@@ -29,10 +29,10 @@ export function Menu({ onSelectOperation }: MenuProps) {
   const { data: results, isLoading } = useResults();
 
   const operations = [
-    { id: 'addition' as const, label: 'Addition', icon: Plus, color: 'bg-blue-500', shadow: 'shadow-blue-500/30' },
-    { id: 'subtraction' as const, label: 'Subtraction', icon: Minus, color: 'bg-green-500', shadow: 'shadow-green-500/30' },
-    { id: 'multiplication' as const, label: 'Multiplication', icon: X, color: 'bg-purple-500', shadow: 'shadow-purple-500/30' },
-    { id: 'division' as const, label: 'Division', icon: Divide, color: 'bg-pink-500', shadow: 'shadow-pink-500/30' },
+    { id: 'addition' as const, label: 'Adição', icon: Plus, color: 'bg-blue-500', shadow: 'shadow-blue-500/30' },
+    { id: 'subtraction' as const, label: 'Subtração', icon: Minus, color: 'bg-green-500', shadow: 'shadow-green-500/30' },
+    { id: 'multiplication' as const, label: 'Multiplicação', icon: X, color: 'bg-purple-500', shadow: 'shadow-purple-500/30' },
+    { id: 'division' as const, label: 'Divisão', icon: Divide, color: 'bg-pink-500', shadow: 'shadow-pink-500/30' },
   ];
 
   return (
@@ -43,7 +43,7 @@ export function Menu({ onSelectOperation }: MenuProps) {
           animate={{ opacity: 1, y: 0 }}
           className="text-5xl md:text-7xl font-black text-foreground tracking-tight font-display"
         >
-          Math <span className="text-primary">Practice</span> Fun!
+          Matemática <span className="text-primary">Divertida</span>!
         </motion.h1>
         <motion.p 
           initial={{ opacity: 0 }}
@@ -51,7 +51,7 @@ export function Menu({ onSelectOperation }: MenuProps) {
           transition={{ delay: 0.2 }}
           className="text-xl text-muted-foreground font-medium"
         >
-          Master your math skills with fun challenges
+          Domine suas habilidades matemáticas com desafios divertidos
         </motion.p>
       </div>
 
@@ -79,7 +79,7 @@ export function Menu({ onSelectOperation }: MenuProps) {
                 {op.label}
               </h3>
               <p className="text-muted-foreground font-medium">
-                Practice {op.label.toLowerCase()}
+                Praticar {op.label.toLowerCase()}
               </p>
             </button>
           </motion.div>
@@ -96,7 +96,7 @@ export function Menu({ onSelectOperation }: MenuProps) {
           <CardHeader className="pb-2">
             <CardTitle className="flex items-center gap-2 text-xl">
               <History className="w-5 h-5 text-primary" />
-              Recent Activity
+              Atividade Recente
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -121,9 +121,13 @@ export function Menu({ onSelectOperation }: MenuProps) {
                          result.operation === 'multiplication' ? '×' : '÷'}
                       </div>
                       <div>
-                        <p className="font-bold capitalize text-sm">{result.operation}</p>
+                        <p className="font-bold capitalize text-sm">
+                          {result.operation === 'addition' ? 'Adição' : 
+                           result.operation === 'subtraction' ? 'Subtração' :
+                           result.operation === 'multiplication' ? 'Multiplicação' : 'Divisão'}
+                        </p>
                         <p className="text-xs text-muted-foreground">
-                          {new Date(result.createdAt!).toLocaleDateString()}
+                          {new Date(result.createdAt!).toLocaleDateString('pt-BR')}
                         </p>
                       </div>
                     </div>
@@ -137,7 +141,7 @@ export function Menu({ onSelectOperation }: MenuProps) {
               </div>
             ) : (
               <div className="text-center py-8 text-muted-foreground">
-                No games played yet. Start practicing!
+                Nenhuma partida jogada ainda. Comece a praticar!
               </div>
             )}
           </CardContent>
@@ -150,18 +154,18 @@ export function Menu({ onSelectOperation }: MenuProps) {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-xl text-white">
               <Trophy className="w-5 h-5" />
-              Your Stats
+              Suas Estatísticas
             </CardTitle>
           </CardHeader>
           <CardContent className="relative z-10">
             <div className="space-y-6">
               <div>
-                <p className="text-white/80 text-sm font-medium mb-1">Total Games Played</p>
+                <p className="text-white/80 text-sm font-medium mb-1">Total de Partidas</p>
                 <p className="text-4xl font-black">{results?.length || 0}</p>
               </div>
               
               <div>
-                <p className="text-white/80 text-sm font-medium mb-1">Average Score</p>
+                <p className="text-white/80 text-sm font-medium mb-1">Média de Pontuação</p>
                 <p className="text-4xl font-black">
                   {results && results.length > 0
                     ? Math.round(results.reduce((acc, curr) => acc + (curr.score / curr.totalQuestions * 10), 0) / results.length * 10) / 10
