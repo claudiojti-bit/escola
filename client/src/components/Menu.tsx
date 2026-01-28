@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useResults } from "@/hooks/use-results";
-import { Plus, Minus, X, Divide, Trophy, History } from "lucide-react";
+import { useResults, useClearResults } from "@/hooks/use-results";
+import { Plus, Minus, X, Divide, Trophy, History, Trash2 } from "lucide-react";
 
 type Operation = 'addition' | 'subtraction' | 'multiplication' | 'division';
 
@@ -27,6 +27,7 @@ const item = {
 
 export function Menu({ onSelectOperation }: MenuProps) {
   const { data: results, isLoading } = useResults();
+  const clearResults = useClearResults();
 
   const operations = [
     { id: 'addition' as const, label: 'Adição', icon: Plus, color: 'bg-blue-500', shadow: 'shadow-blue-500/30' },
@@ -151,11 +152,24 @@ export function Menu({ onSelectOperation }: MenuProps) {
           <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-white/10 rounded-full blur-2xl" />
           <div className="absolute bottom-0 left-0 -ml-8 -mb-8 w-32 h-32 bg-black/10 rounded-full blur-2xl" />
           
-          <CardHeader>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0">
             <CardTitle className="flex items-center gap-2 text-xl text-white">
               <Trophy className="w-5 h-5" />
               Suas Estatísticas
             </CardTitle>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-white/60 hover:text-white hover:bg-white/10"
+              onClick={() => {
+                if (confirm('Tem certeza que deseja zerar todas as estatísticas?')) {
+                  clearResults.mutate();
+                }
+              }}
+              disabled={clearResults.isPending}
+            >
+              <Trash2 className="w-4 h-4" />
+            </Button>
           </CardHeader>
           <CardContent className="relative z-10">
             <div className="space-y-6">

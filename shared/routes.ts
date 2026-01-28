@@ -38,6 +38,13 @@ export const api = {
         400: errorSchemas.validation,
       },
     },
+    clear: {
+      method: 'DELETE' as const,
+      path: '/api/results',
+      responses: {
+        204: z.void(),
+      },
+    },
   },
 };
 

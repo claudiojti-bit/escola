@@ -30,5 +30,10 @@ export async function registerRoutes(
     }
   });
 
+  app.delete(api.results.clear.path, async (req, res) => {
+    await storage.clearResults();
+    res.status(204).end();
+  });
+
   return httpServer;
 }
