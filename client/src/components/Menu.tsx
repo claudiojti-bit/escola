@@ -160,8 +160,9 @@ export function Menu({ onSelectOperation }: MenuProps) {
             <Button
               variant="ghost"
               size="icon"
-              className="text-white/60 hover:text-white hover:bg-white/10"
-              onMouseDown={(e) => {
+              className="text-white/60 hover:text-white hover:bg-white/10 cursor-pointer relative z-50"
+              onClick={(e) => {
+                e.preventDefault();
                 e.stopPropagation();
                 if (window.confirm('Tem certeza que deseja zerar todas as estatísticas?')) {
                   clearResults.mutate();
@@ -169,7 +170,7 @@ export function Menu({ onSelectOperation }: MenuProps) {
               }}
               disabled={clearResults.isPending}
             >
-              <Trash2 className="w-4 h-4" />
+              <Trash2 className="w-4 h-4 pointer-events-none" />
             </Button>
           </CardHeader>
           <CardContent className="relative z-10">
