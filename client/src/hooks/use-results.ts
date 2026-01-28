@@ -38,3 +38,19 @@ export function useCreateResult() {
     },
   });
 }
+
+export function useClearResults() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async () => {
+      const res = await fetch(api.results.clear.path, {
+        method: api.results.clear.method,
+        credentials: "include",
+      });
+      if (!res.ok) throw new Error("Failed to clear results");
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [api.results.list.path] });
+    },
+  });
+}
