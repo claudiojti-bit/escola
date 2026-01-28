@@ -161,8 +161,9 @@ export function Menu({ onSelectOperation }: MenuProps) {
               variant="ghost"
               size="icon"
               className="text-white/60 hover:text-white hover:bg-white/10"
-              onClick={() => {
-                if (confirm('Tem certeza que deseja zerar todas as estatísticas?')) {
+              onMouseDown={(e) => {
+                e.stopPropagation();
+                if (window.confirm('Tem certeza que deseja zerar todas as estatísticas?')) {
                   clearResults.mutate();
                 }
               }}
