@@ -2,10 +2,10 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useResultsBySubject, useClearResultsBySubject } from "@/hooks/use-results";
-import { Type, Pencil, Volume2, BookText, Trophy, History, Trash2, Home, PawPrint } from "lucide-react";
+import { Type, Pencil, Volume2, BookText, Trophy, History, Trash2, Home, PawPrint, Package } from "lucide-react";
 import { Link } from "wouter";
 
-type QuestionType = 'firstLetter' | 'completeWord' | 'soundMatch' | 'initialSyllable' | 'animals';
+type QuestionType = 'firstLetter' | 'completeWord' | 'soundMatch' | 'initialSyllable' | 'animals' | 'objects';
 
 interface PreLiteracyMenuProps {
   onSelectType: (type: QuestionType) => void;
@@ -17,6 +17,7 @@ const typeLabels: Record<QuestionType, string> = {
   soundMatch: 'Som Inicial',
   initialSyllable: 'Sílaba Inicial',
   animals: 'Animais',
+  objects: 'Objetos',
 };
 
 const container = {
@@ -39,6 +40,7 @@ export function PreLiteracyMenu({ onSelectType }: PreLiteracyMenuProps) {
     { id: 'soundMatch' as const, label: 'Som Inicial', icon: Volume2, color: 'bg-pink-500', shadow: 'shadow-pink-500/30', desc: 'Qual começa com este som?' },
     { id: 'initialSyllable' as const, label: 'Sílaba Inicial', icon: BookText, color: 'bg-purple-500', shadow: 'shadow-purple-500/30', desc: 'Qual a sílaba inicial?' },
     { id: 'animals' as const, label: 'Animais', icon: PawPrint, color: 'bg-green-500', shadow: 'shadow-green-500/30', desc: 'Qual é o animal?' },
+    { id: 'objects' as const, label: 'Objetos', icon: Package, color: 'bg-cyan-500', shadow: 'shadow-cyan-500/30', desc: 'Qual é o objeto?' },
   ];
 
   return (

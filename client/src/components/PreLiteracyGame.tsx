@@ -7,7 +7,7 @@ import { Progress } from "@/components/ui/progress";
 import { useCreateResult } from "@/hooks/use-results";
 import { Loader2, ArrowRight, CheckCircle2, XCircle, Trophy, Home, RotateCcw } from "lucide-react";
 
-type QuestionType = 'firstLetter' | 'completeWord' | 'soundMatch' | 'initialSyllable' | 'animals';
+type QuestionType = 'firstLetter' | 'completeWord' | 'soundMatch' | 'initialSyllable' | 'animals' | 'objects';
 
 // Importar imagens de animais
 import gatoImg from '@/assets/animals/gato.jpg';
@@ -21,6 +21,18 @@ import ursoImg from '@/assets/animals/urso.jpg';
 import coelhoImg from '@/assets/animals/coelho.jpg';
 import patoImg from '@/assets/animals/pato.jpg';
 
+// Importar imagens de objetos
+import bolaImg from '@/assets/objects/bola.jpg';
+import carroImg from '@/assets/objects/carro.jpg';
+import casaImg from '@/assets/objects/casa.jpg';
+import lapisImg from '@/assets/objects/lapis.jpg';
+import livroImg from '@/assets/objects/livro.jpg';
+import mesaImg from '@/assets/objects/mesa.jpg';
+import cadeiraImg from '@/assets/objects/cadeira.jpg';
+import macaImg from '@/assets/objects/maca.jpg';
+import bananaImg from '@/assets/objects/banana.jpg';
+import florImg from '@/assets/objects/flor.jpg';
+
 // Dados dos animais com imagens
 const animalData = [
   { name: 'GATO', image: gatoImg },
@@ -33,6 +45,20 @@ const animalData = [
   { name: 'URSO', image: ursoImg },
   { name: 'COELHO', image: coelhoImg },
   { name: 'PATO', image: patoImg },
+];
+
+// Dados dos objetos com imagens
+const objectData = [
+  { name: 'BOLA', image: bolaImg },
+  { name: 'CARRO', image: carroImg },
+  { name: 'CASA', image: casaImg },
+  { name: 'LÁPIS', image: lapisImg },
+  { name: 'LIVRO', image: livroImg },
+  { name: 'MESA', image: mesaImg },
+  { name: 'CADEIRA', image: cadeiraImg },
+  { name: 'MAÇÃ', image: macaImg },
+  { name: 'BANANA', image: bananaImg },
+  { name: 'FLOR', image: florImg },
 ];
 
 interface PreLiteracyGameProps {
@@ -316,6 +342,7 @@ export function PreLiteracyGame({ questionType, onExit }: PreLiteracyGameProps) 
   const [usedWordIndices, setUsedWordIndices] = useState<Set<number>>(new Set());
   const [usedCompleteWordIndices, setUsedCompleteWordIndices] = useState<Set<number>>(new Set());
   const [usedAnimalIndices, setUsedAnimalIndices] = useState<Set<number>>(new Set());
+  const [usedObjectIndices, setUsedObjectIndices] = useState<Set<number>>(new Set());
   
   const createResult = useCreateResult();
 
@@ -409,6 +436,32 @@ export function PreLiteracyGame({ questionType, onExit }: PreLiteracyGameProps) 
           image: correctAnimal.image,
           options,
           correctAnswer: correctAnimal.name,
+        };
+      }
+      case 'objects': {
+        // Seleciona um objeto que ainda não foi usado
+        const availableObjectIndices = objectData.map((_, i) => i).filter(i => !usedObjectIndices.has(i));
+        const selectedObjectIndex = availableObjectIndices.length > 0 
+          ? availableObjectIndices[Math.floor(Math.random() * availableObjectIndices.length)]
+          : Math.floor(Math.random() * objectData.length);
+        
+        setUsedObjectIndices(prev => new Set([...Array.from(prev), selectedObjectIndex]));
+        const correctObject = objectData[selectedObjectIndex];
+        
+        // Opções erradas são outros objetos aleatórios
+        const wrongOptions = objectData
+          .filter(o => o.name !== correctObject.name)
+          .sort(() => Math.random() - 0.5)
+          .slice(0, 3)
+          .map(o => o.name);
+        
+        const options = [correctObject.name, ...wrongOptions].sort(() => Math.random() - 0.5);
+        return {
+          type: 'objects',
+          prompt: 'Qual é o nome deste objeto?',
+          image: correctObject.image,
+          options,
+          correctAnswer: correctObject.name,
         };
       }
     }
