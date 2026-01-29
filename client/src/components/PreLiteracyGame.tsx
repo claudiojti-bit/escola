@@ -32,6 +32,26 @@ import cadeiraImg from '@/assets/objects/cadeira.png';
 import macaImg from '@/assets/objects/maca.png';
 import bananaImg from '@/assets/objects/banana.png';
 import florImg from '@/assets/objects/flor.png';
+import aviaoImg from '@/assets/objects/aviao.png';
+import barcoImg from '@/assets/objects/barco.png';
+import bicicletaImg from '@/assets/objects/bicicleta.png';
+import bonecaImg from '@/assets/objects/boneca.png';
+import chapeuImg from '@/assets/objects/chapeu.png';
+import chaveImg from '@/assets/objects/chave.png';
+import copoImg from '@/assets/objects/copo.png';
+import escovaImg from '@/assets/objects/escova.png';
+import estrelaImg from '@/assets/objects/estrela.png';
+import garrafaImg from '@/assets/objects/garrafa.png';
+import guardachuvaImg from '@/assets/objects/guardachuva.png';
+import oculosImg from '@/assets/objects/oculos.png';
+import pipaImg from '@/assets/objects/pipa.png';
+import portaImg from '@/assets/objects/porta.png';
+import relogioImg from '@/assets/objects/relogio.png';
+import sapatoImg from '@/assets/objects/sapato.png';
+import solImg from '@/assets/objects/sol.png';
+import tesouraImg from '@/assets/objects/tesoura.png';
+import televisaoImg from '@/assets/objects/televisao.png';
+import xicaraImg from '@/assets/objects/xicara.png';
 
 // Dados dos animais com imagens
 const animalData = [
@@ -47,7 +67,7 @@ const animalData = [
   { name: 'PATO', image: patoImg },
 ];
 
-// Dados dos objetos com imagens
+// Dados dos objetos com imagens (30 objetos)
 const objectData = [
   { name: 'BOLA', image: bolaImg },
   { name: 'CARRO', image: carroImg },
@@ -59,6 +79,26 @@ const objectData = [
   { name: 'MAÇÃ', image: macaImg },
   { name: 'BANANA', image: bananaImg },
   { name: 'FLOR', image: florImg },
+  { name: 'AVIÃO', image: aviaoImg },
+  { name: 'BARCO', image: barcoImg },
+  { name: 'BICICLETA', image: bicicletaImg },
+  { name: 'BONECA', image: bonecaImg },
+  { name: 'CHAPÉU', image: chapeuImg },
+  { name: 'CHAVE', image: chaveImg },
+  { name: 'COPO', image: copoImg },
+  { name: 'ESCOVA', image: escovaImg },
+  { name: 'ESTRELA', image: estrelaImg },
+  { name: 'GARRAFA', image: garrafaImg },
+  { name: 'GUARDA-CHUVA', image: guardachuvaImg },
+  { name: 'ÓCULOS', image: oculosImg },
+  { name: 'PIPA', image: pipaImg },
+  { name: 'PORTA', image: portaImg },
+  { name: 'RELÓGIO', image: relogioImg },
+  { name: 'SAPATO', image: sapatoImg },
+  { name: 'SOL', image: solImg },
+  { name: 'TESOURA', image: tesouraImg },
+  { name: 'TELEVISÃO', image: televisaoImg },
+  { name: 'XÍCARA', image: xicaraImg },
 ];
 
 interface PreLiteracyGameProps {
