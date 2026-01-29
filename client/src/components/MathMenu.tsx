@@ -1,22 +1,28 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useResults, useClearResults } from "@/hooks/use-results";
-import { Plus, Minus, X, Divide, Trophy, History, Trash2 } from "lucide-react";
+import { useResultsBySubject, useClearResultsBySubject } from "@/hooks/use-results";
+import { Plus, Minus, X, Divide, Trophy, History, Trash2, Home } from "lucide-react";
+import { Link } from "wouter";
 
 type Operation = 'addition' | 'subtraction' | 'multiplication' | 'division';
 
-interface MenuProps {
+interface MathMenuProps {
   onSelectOperation: (op: Operation) => void;
 }
+
+const operationLabels: Record<Operation, string> = {
+  addition: 'Adição',
+  subtraction: 'Subtração',
+  multiplication: 'Multiplicação',
+  division: 'Divisão',
+};
 
 const container = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
+    transition: { staggerChildren: 0.1 }
   }
 };
 
@@ -25,9 +31,9 @@ const item = {
   show: { opacity: 1, y: 0 }
 };
 
-export function Menu({ onSelectOperation }: MenuProps) {
-  const { data: results, isLoading } = useResults();
-  const clearResults = useClearResults();
+export function MathMenu({ onSelectOperation }: MathMenuProps) {
+  const { data: results, isLoading } = useResultsBySubject('math');
+  const clearResults = useClearResultsBySubject();
 
   const operations = [
     { id: 'addition' as const, label: 'Adição', icon: Plus, color: 'bg-blue-500', shadow: 'shadow-blue-500/30' },
@@ -38,22 +44,30 @@ export function Menu({ onSelectOperation }: MenuProps) {
 
   return (
     <div className="w-full max-w-5xl mx-auto space-y-12">
-      <div className="text-center space-y-4">
-        <motion.h1 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-5xl md:text-7xl font-black text-foreground tracking-tight font-display"
-        >
-          Matemática <span className="text-primary">Divertida</span>!
-        </motion.h1>
-        <motion.p 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="text-xl text-muted-foreground font-medium"
-        >
-          Domine suas habilidades matemáticas com desafios divertidos
-        </motion.p>
+      <div className="flex items-center gap-4">
+        <Link href="/">
+          <Button variant="ghost" size="icon" className="rounded-full">
+            <Home className="w-5 h-5" />
+          </Button>
+        </Link>
+        <div className="text-center flex-1">
+          <motion.h1 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-5xl md:text-7xl font-black text-foreground tracking-tight font-display"
+          >
+            Matemática <span className="text-primary">Divertida</span>!
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="text-xl text-muted-foreground font-medium mt-2"
+          >
+            Escolha uma operação para praticar
+          </motion.p>
+        </div>
+        <div className="w-10" />
       </div>
 
       <motion.div 
@@ -67,6 +81,7 @@ export function Menu({ onSelectOperation }: MenuProps) {
             <button
               onClick={() => onSelectOperation(op.id)}
               className={`w-full group relative overflow-hidden rounded-3xl p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${op.shadow} bg-white border border-border/50 text-left`}
+              data-testid={`button-operation-${op.id}`}
             >
               <div className={`absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity`}>
                 <op.icon className="w-32 h-32 transform rotate-12" />
@@ -113,19 +128,17 @@ export function Menu({ onSelectOperation }: MenuProps) {
                   <div key={result.id} className="flex items-center justify-between p-3 rounded-xl bg-white border border-border/50 hover:border-primary/20 transition-colors">
                     <div className="flex items-center gap-3">
                       <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white
-                        ${result.operation === 'addition' ? 'bg-blue-500' : 
-                          result.operation === 'subtraction' ? 'bg-green-500' :
-                          result.operation === 'multiplication' ? 'bg-purple-500' : 'bg-pink-500'}`
+                        ${result.topic === 'addition' ? 'bg-blue-500' : 
+                          result.topic === 'subtraction' ? 'bg-green-500' :
+                          result.topic === 'multiplication' ? 'bg-purple-500' : 'bg-pink-500'}`
                       }>
-                        {result.operation === 'addition' ? '+' : 
-                         result.operation === 'subtraction' ? '-' :
-                         result.operation === 'multiplication' ? '×' : '÷'}
+                        {result.topic === 'addition' ? '+' : 
+                         result.topic === 'subtraction' ? '-' :
+                         result.topic === 'multiplication' ? '×' : '÷'}
                       </div>
                       <div>
                         <p className="font-bold capitalize text-sm">
-                          {result.operation === 'addition' ? 'Adição' : 
-                           result.operation === 'subtraction' ? 'Subtração' :
-                           result.operation === 'multiplication' ? 'Multiplicação' : 'Divisão'}
+                          {result.topic ? operationLabels[result.topic as Operation] : 'Matemática'}
                         </p>
                         <p className="text-xs text-muted-foreground">
                           {new Date(result.createdAt!).toLocaleDateString('pt-BR')}
@@ -152,7 +165,7 @@ export function Menu({ onSelectOperation }: MenuProps) {
           <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-white/10 rounded-full blur-2xl" />
           <div className="absolute bottom-0 left-0 -ml-8 -mb-8 w-32 h-32 bg-black/10 rounded-full blur-2xl" />
           
-          <CardHeader className="flex flex-row items-center justify-between space-y-0">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 gap-2">
             <CardTitle className="flex items-center gap-2 text-xl text-white">
               <Trophy className="w-5 h-5" />
               Suas Estatísticas
@@ -164,11 +177,12 @@ export function Menu({ onSelectOperation }: MenuProps) {
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                if (window.confirm('Tem certeza que deseja zerar todas as estatísticas?')) {
-                  clearResults.mutate();
+                if (window.confirm('Tem certeza que deseja zerar as estatísticas de Matemática?')) {
+                  clearResults.mutate('math');
                 }
               }}
               disabled={clearResults.isPending}
+              data-testid="button-clear-math-stats"
             >
               <Trash2 className="w-4 h-4 pointer-events-none" />
             </Button>

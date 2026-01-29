@@ -1,11 +1,23 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { api, type CreateResultInput, type ResultResponse } from "@shared/routes";
+import { api, type CreateResultInput, buildUrl } from "@shared/routes";
+import type { Subject } from "@shared/schema";
 
 export function useResults() {
   return useQuery({
     queryKey: [api.results.list.path],
     queryFn: async () => {
       const res = await fetch(api.results.list.path, { credentials: "include" });
+      if (!res.ok) throw new Error("Failed to fetch results");
+      return api.results.list.responses[200].parse(await res.json());
+    },
+  });
+}
+
+export function useResultsBySubject(subject: Subject) {
+  return useQuery({
+    queryKey: [api.results.list.path, subject],
+    queryFn: async () => {
+      const res = await fetch(`/api/results/${subject}`, { credentials: "include" });
       if (!res.ok) throw new Error("Failed to fetch results");
       return api.results.list.responses[200].parse(await res.json());
     },
@@ -33,8 +45,11 @@ export function useCreateResult() {
       
       return api.results.create.responses[201].parse(await res.json());
     },
-    onSuccess: () => {
+    onSuccess: (result) => {
       queryClient.invalidateQueries({ queryKey: [api.results.list.path] });
+      if (result.subject) {
+        queryClient.invalidateQueries({ queryKey: [api.results.list.path, result.subject] });
+      }
     },
   });
 }
@@ -51,6 +66,24 @@ export function useClearResults() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [api.results.list.path] });
+    },
+  });
+}
+
+export function useClearResultsBySubject() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (subject: Subject) => {
+      const res = await fetch(`/api/results/${subject}`, {
+        method: 'DELETE',
+        credentials: "include",
+      });
+      if (!res.ok) throw new Error("Failed to clear results");
+      return subject;
+    },
+    onSuccess: (subject) => {
+      queryClient.invalidateQueries({ queryKey: [api.results.list.path] });
+      queryClient.invalidateQueries({ queryKey: [api.results.list.path, subject] });
     },
   });
 }

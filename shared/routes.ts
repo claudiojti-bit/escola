@@ -1,9 +1,6 @@
 import { z } from 'zod';
 import { insertResultSchema, results } from './schema';
 
-// ============================================
-// SHARED ERROR SCHEMAS
-// ============================================
 export const errorSchemas = {
   validation: z.object({
     message: z.string(),
@@ -17,14 +14,18 @@ export const errorSchemas = {
   }),
 };
 
-// ============================================
-// API CONTRACT
-// ============================================
 export const api = {
   results: {
     list: {
       method: 'GET' as const,
       path: '/api/results',
+      responses: {
+        200: z.array(z.custom<typeof results.$inferSelect>()),
+      },
+    },
+    listBySubject: {
+      method: 'GET' as const,
+      path: '/api/results/:subject',
       responses: {
         200: z.array(z.custom<typeof results.$inferSelect>()),
       },
@@ -45,12 +46,16 @@ export const api = {
         204: z.void(),
       },
     },
+    clearBySubject: {
+      method: 'DELETE' as const,
+      path: '/api/results/:subject',
+      responses: {
+        204: z.void(),
+      },
+    },
   },
 };
 
-// ============================================
-// REQUIRED: buildUrl helper
-// ============================================
 export function buildUrl(path: string, params?: Record<string, string | number>): string {
   let url = path;
   if (params) {
@@ -63,9 +68,6 @@ export function buildUrl(path: string, params?: Record<string, string | number>)
   return url;
 }
 
-// ============================================
-// TYPE HELPERS
-// ============================================
 export type CreateResultInput = z.infer<typeof api.results.create.input>;
 export type ResultResponse = z.infer<typeof api.results.create.responses[201]>;
 export type ResultsListResponse = z.infer<typeof api.results.list.responses[200]>;

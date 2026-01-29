@@ -14,6 +14,11 @@ export async function registerRoutes(
     res.json(results);
   });
 
+  app.get('/api/results/:subject', async (req, res) => {
+    const results = await storage.getResultsBySubject(req.params.subject);
+    res.json(results);
+  });
+
   app.post(api.results.create.path, async (req, res) => {
     try {
       const input = api.results.create.input.parse(req.body);
@@ -32,6 +37,11 @@ export async function registerRoutes(
 
   app.delete(api.results.clear.path, async (req, res) => {
     await storage.clearResults();
+    res.status(204).end();
+  });
+
+  app.delete('/api/results/:subject', async (req, res) => {
+    await storage.clearResultsBySubject(req.params.subject);
     res.status(204).end();
   });
 

@@ -129,8 +129,9 @@ export function MathGame({ operation, onExit }: MathGameProps) {
     }
 
     createResult.mutate({
-      operation,
-      score: score + (feedback === 'correct' ? 0 : 0), // Score is already updated in handleSubmit
+      subject: 'math',
+      topic: operation,
+      score: score,
       totalQuestions: TOTAL_QUESTIONS
     });
   };
