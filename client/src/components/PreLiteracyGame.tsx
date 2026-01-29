@@ -21,17 +21,17 @@ import ursoImg from '@/assets/animals/urso.jpg';
 import coelhoImg from '@/assets/animals/coelho.jpg';
 import patoImg from '@/assets/animals/pato.jpg';
 
-// Importar imagens de objetos
-import bolaImg from '@/assets/objects/bola.jpg';
-import carroImg from '@/assets/objects/carro.jpg';
-import casaImg from '@/assets/objects/casa.jpg';
-import lapisImg from '@/assets/objects/lapis.jpg';
-import livroImg from '@/assets/objects/livro.jpg';
-import mesaImg from '@/assets/objects/mesa.jpg';
-import cadeiraImg from '@/assets/objects/cadeira.jpg';
-import macaImg from '@/assets/objects/maca.jpg';
-import bananaImg from '@/assets/objects/banana.jpg';
-import florImg from '@/assets/objects/flor.jpg';
+// Importar imagens de objetos (ilustrações infantis com fundo branco)
+import bolaImg from '@/assets/objects/bola.png';
+import carroImg from '@/assets/objects/carro.png';
+import casaImg from '@/assets/objects/casa.png';
+import lapisImg from '@/assets/objects/lapis.png';
+import livroImg from '@/assets/objects/livro.png';
+import mesaImg from '@/assets/objects/mesa.png';
+import cadeiraImg from '@/assets/objects/cadeira.png';
+import macaImg from '@/assets/objects/maca.png';
+import bananaImg from '@/assets/objects/banana.png';
+import florImg from '@/assets/objects/flor.png';
 
 // Dados dos animais com imagens
 const animalData = [
