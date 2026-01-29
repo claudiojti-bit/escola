@@ -9,17 +9,37 @@ import { Loader2, ArrowRight, CheckCircle2, XCircle, Trophy, Home, RotateCcw } f
 
 type QuestionType = 'firstLetter' | 'completeWord' | 'soundMatch' | 'initialSyllable' | 'animals' | 'objects';
 
-// Importar imagens de animais
-import gatoImg from '@/assets/animals/gato.jpg';
-import cachorroImg from '@/assets/animals/cachorro.jpg';
-import leaoImg from '@/assets/animals/leao.jpg';
-import elefanteImg from '@/assets/animals/elefante.jpg';
-import girafaImg from '@/assets/animals/girafa.jpg';
-import macacoImg from '@/assets/animals/macaco.jpg';
-import zebraImg from '@/assets/animals/zebra.jpg';
-import ursoImg from '@/assets/animals/urso.jpg';
-import coelhoImg from '@/assets/animals/coelho.jpg';
-import patoImg from '@/assets/animals/pato.jpg';
+// Importar imagens de animais (ilustrações infantis com fundo branco - 30 animais)
+import gatoImg from '@/assets/animals/gato.png';
+import cachorroImg from '@/assets/animals/cachorro.png';
+import leaoImg from '@/assets/animals/leao.png';
+import elefanteImg from '@/assets/animals/elefante.png';
+import girafaImg from '@/assets/animals/girafa.png';
+import macacoImg from '@/assets/animals/macaco.png';
+import zebraImg from '@/assets/animals/zebra.png';
+import ursoImg from '@/assets/animals/urso.png';
+import coelhoImg from '@/assets/animals/coelho.png';
+import patoImg from '@/assets/animals/pato.png';
+import borboletaImg from '@/assets/animals/borboleta.png';
+import cavaloImg from '@/assets/animals/cavalo.png';
+import cobraImg from '@/assets/animals/cobra.png';
+import corujaImg from '@/assets/animals/coruja.png';
+import focaImg from '@/assets/animals/foca.png';
+import galinhaImg from '@/assets/animals/galinha.png';
+import golfinhoImg from '@/assets/animals/golfinho.png';
+import hipopotamoImg from '@/assets/animals/hipopotamo.png';
+import jacareImg from '@/assets/animals/jacare.png';
+import loboImg from '@/assets/animals/lobo.png';
+import ovelhaImg from '@/assets/animals/ovelha.png';
+import papagaioImg from '@/assets/animals/papagaio.png';
+import peixeImg from '@/assets/animals/peixe.png';
+import pinguimImg from '@/assets/animals/pinguim.png';
+import porcoImg from '@/assets/animals/porco.png';
+import ratoImg from '@/assets/animals/rato.png';
+import sapoImg from '@/assets/animals/sapo.png';
+import tartarugaImg from '@/assets/animals/tartaruga.png';
+import tigreImg from '@/assets/animals/tigre.png';
+import vacaImg from '@/assets/animals/vaca.png';
 
 // Importar imagens de objetos (ilustrações infantis com fundo branco)
 import bolaImg from '@/assets/objects/bola.png';
@@ -53,7 +73,7 @@ import tesouraImg from '@/assets/objects/tesoura.png';
 import televisaoImg from '@/assets/objects/televisao.png';
 import xicaraImg from '@/assets/objects/xicara.png';
 
-// Dados dos animais com imagens
+// Dados dos animais com imagens (30 animais)
 const animalData = [
   { name: 'GATO', image: gatoImg },
   { name: 'CACHORRO', image: cachorroImg },
@@ -65,6 +85,26 @@ const animalData = [
   { name: 'URSO', image: ursoImg },
   { name: 'COELHO', image: coelhoImg },
   { name: 'PATO', image: patoImg },
+  { name: 'BORBOLETA', image: borboletaImg },
+  { name: 'CAVALO', image: cavaloImg },
+  { name: 'COBRA', image: cobraImg },
+  { name: 'CORUJA', image: corujaImg },
+  { name: 'FOCA', image: focaImg },
+  { name: 'GALINHA', image: galinhaImg },
+  { name: 'GOLFINHO', image: golfinhoImg },
+  { name: 'HIPOPÓTAMO', image: hipopotamoImg },
+  { name: 'JACARÉ', image: jacareImg },
+  { name: 'LOBO', image: loboImg },
+  { name: 'OVELHA', image: ovelhaImg },
+  { name: 'PAPAGAIO', image: papagaioImg },
+  { name: 'PEIXE', image: peixeImg },
+  { name: 'PINGUIM', image: pinguimImg },
+  { name: 'PORCO', image: porcoImg },
+  { name: 'RATO', image: ratoImg },
+  { name: 'SAPO', image: sapoImg },
+  { name: 'TARTARUGA', image: tartarugaImg },
+  { name: 'TIGRE', image: tigreImg },
+  { name: 'VACA', image: vacaImg },
 ];
 
 // Dados dos objetos com imagens (30 objetos)
