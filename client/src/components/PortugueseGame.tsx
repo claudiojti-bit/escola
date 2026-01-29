@@ -24,35 +24,115 @@ interface Question {
 const TOTAL_QUESTIONS = 10;
 
 const questions: Question[] = [
+  // Gramática (20 questões)
   { sentence: "Fazem dois anos que não o vejo.", isCorrect: false, correction: "Faz dois anos que não o vejo.", category: "grammar" },
   { sentence: "Houveram muitos acidentes ontem.", isCorrect: false, correction: "Houve muitos acidentes ontem.", category: "grammar" },
   { sentence: "Ela está meia cansada hoje.", isCorrect: false, correction: "Ela está meio cansada hoje.", category: "grammar" },
   { sentence: "Nós assistimos o filme ontem.", isCorrect: false, correction: "Nós assistimos ao filme ontem.", category: "grammar" },
   { sentence: "Ele chegou atrasado na reunião.", isCorrect: true, correction: "", category: "grammar" },
+  { sentence: "Para mim fazer isso é difícil.", isCorrect: false, correction: "Para eu fazer isso é difícil.", category: "grammar" },
+  { sentence: "Ela preferiu mais o vestido azul.", isCorrect: false, correction: "Ela preferiu o vestido azul.", category: "grammar" },
+  { sentence: "Eu lhe amo muito.", isCorrect: false, correction: "Eu a amo muito. / Eu te amo muito.", category: "grammar" },
+  { sentence: "Ele obedece os pais.", isCorrect: false, correction: "Ele obedece aos pais.", category: "grammar" },
+  { sentence: "Ela respondeu a pergunta.", isCorrect: false, correction: "Ela respondeu à pergunta.", category: "grammar" },
+  { sentence: "A mãe chamou o filho.", isCorrect: true, correction: "", category: "grammar" },
+  { sentence: "O professor explicou a lição.", isCorrect: true, correction: "", category: "grammar" },
+  { sentence: "Nós vamos no cinema.", isCorrect: false, correction: "Nós vamos ao cinema.", category: "grammar" },
+  { sentence: "Eu prefiro pizza do que hambúrguer.", isCorrect: false, correction: "Eu prefiro pizza a hambúrguer.", category: "grammar" },
+  { sentence: "Ela namorou com ele por anos.", isCorrect: false, correction: "Ela namorou ele por anos.", category: "grammar" },
+  { sentence: "Ele esqueceu de trazer o livro.", isCorrect: false, correction: "Ele esqueceu o livro.", category: "grammar" },
+  { sentence: "Lembrei-me do aniversário.", isCorrect: true, correction: "", category: "grammar" },
+  { sentence: "Havia muitas pessoas na festa.", isCorrect: true, correction: "", category: "grammar" },
+  { sentence: "Isso implica em problemas.", isCorrect: false, correction: "Isso implica problemas.", category: "grammar" },
+  { sentence: "Ele aspira o cargo de diretor.", isCorrect: false, correction: "Ele aspira ao cargo de diretor.", category: "grammar" },
   
-  { sentence: "Ele foi a passeio no parque.", isCorrect: false, correction: "Ele foi passear no parque.", category: "spelling" },
-  { sentence: "A exceção confirma a regra.", isCorrect: true, correction: "", category: "spelling" },
+  // Ortografia (20 questões)
   { sentence: "Ela quiz ir embora cedo.", isCorrect: false, correction: "Ela quis ir embora cedo.", category: "spelling" },
   { sentence: "Vou analizar o documento.", isCorrect: false, correction: "Vou analisar o documento.", category: "spelling" },
   { sentence: "Ele tem previlégio especial.", isCorrect: false, correction: "Ele tem privilégio especial.", category: "spelling" },
+  { sentence: "A exceção confirma a regra.", isCorrect: true, correction: "", category: "spelling" },
+  { sentence: "Ele foi a passeio no parque.", isCorrect: false, correction: "Ele foi passear no parque.", category: "spelling" },
+  { sentence: "Ela está anciousa pela viagem.", isCorrect: false, correction: "Ela está ansiosa pela viagem.", category: "spelling" },
+  { sentence: "O advogado foi ao cartório.", isCorrect: true, correction: "", category: "spelling" },
+  { sentence: "O menino está exitado com a festa.", isCorrect: false, correction: "O menino está excitado com a festa.", category: "spelling" },
+  { sentence: "Vou fazer uma pesquisa.", isCorrect: true, correction: "", category: "spelling" },
+  { sentence: "A professora corrijiu a prova.", isCorrect: false, correction: "A professora corrigiu a prova.", category: "spelling" },
+  { sentence: "Ele tem muito bom senso.", isCorrect: true, correction: "", category: "spelling" },
+  { sentence: "O bebê nasceu saudável.", isCorrect: true, correction: "", category: "spelling" },
+  { sentence: "A música está muito auto.", isCorrect: false, correction: "A música está muito alta.", category: "spelling" },
+  { sentence: "Preciso comprar mantimentos.", isCorrect: true, correction: "", category: "spelling" },
+  { sentence: "Ela tem muita esperiência.", isCorrect: false, correction: "Ela tem muita experiência.", category: "spelling" },
+  { sentence: "O réu foi absolvido.", isCorrect: true, correction: "", category: "spelling" },
+  { sentence: "Ele foi à farmácia.", isCorrect: true, correction: "", category: "spelling" },
+  { sentence: "A empresa está em expanção.", isCorrect: false, correction: "A empresa está em expansão.", category: "spelling" },
+  { sentence: "O ónibus atrasou.", isCorrect: false, correction: "O ônibus atrasou.", category: "spelling" },
+  { sentence: "Preciso de ajuda urgente.", isCorrect: true, correction: "", category: "spelling" },
   
+  // Concordância (20 questões)
   { sentence: "Os alunos estava cansados.", isCorrect: false, correction: "Os alunos estavam cansados.", category: "agreement" },
-  { sentence: "Fazem-se reformas aqui.", isCorrect: false, correction: "Fazem-se reformas aqui. (ou Faz-se reforma)", category: "agreement" },
   { sentence: "A maioria dos alunos faltou.", isCorrect: true, correction: "", category: "agreement" },
   { sentence: "Haviam pessoas na fila.", isCorrect: false, correction: "Havia pessoas na fila.", category: "agreement" },
   { sentence: "As crianças brincavam felizes.", isCorrect: true, correction: "", category: "agreement" },
+  { sentence: "Faz-se reformas aqui.", isCorrect: false, correction: "Fazem-se reformas aqui.", category: "agreement" },
+  { sentence: "Os meninos correu para casa.", isCorrect: false, correction: "Os meninos correram para casa.", category: "agreement" },
+  { sentence: "A equipe venceu o campeonato.", isCorrect: true, correction: "", category: "agreement" },
+  { sentence: "Os livros custam caro.", isCorrect: true, correction: "", category: "agreement" },
+  { sentence: "Os Estados Unidos é um país grande.", isCorrect: false, correction: "Os Estados Unidos são um país grande.", category: "agreement" },
+  { sentence: "Aluga-se apartamentos.", isCorrect: false, correction: "Alugam-se apartamentos.", category: "agreement" },
+  { sentence: "A gente fomos ao parque.", isCorrect: false, correction: "A gente foi ao parque.", category: "agreement" },
+  { sentence: "Existem muitas opções.", isCorrect: true, correction: "", category: "agreement" },
+  { sentence: "Precisa-se de funcionários.", isCorrect: true, correction: "", category: "agreement" },
+  { sentence: "Faltam três dias para a prova.", isCorrect: true, correction: "", category: "agreement" },
+  { sentence: "Bateu três horas no relógio.", isCorrect: false, correction: "Bateram três horas no relógio.", category: "agreement" },
+  { sentence: "Deu dez horas no sino.", isCorrect: false, correction: "Deram dez horas no sino.", category: "agreement" },
+  { sentence: "A maioria das pessoas concordou.", isCorrect: true, correction: "", category: "agreement" },
+  { sentence: "Os professores e alunos chegou.", isCorrect: false, correction: "Os professores e alunos chegaram.", category: "agreement" },
+  { sentence: "Eu e ela fomos ao cinema.", isCorrect: true, correction: "", category: "agreement" },
+  { sentence: "As meninas estavam alegre.", isCorrect: false, correction: "As meninas estavam alegres.", category: "agreement" },
   
+  // Semântica (20 questões)
   { sentence: "Ele é um homem de bom coração.", isCorrect: true, correction: "", category: "semantics" },
   { sentence: "A festa foi muito mais melhor.", isCorrect: false, correction: "A festa foi muito melhor.", category: "semantics" },
   { sentence: "Subir para cima é redundante.", isCorrect: true, correction: "", category: "semantics" },
   { sentence: "Ele entrou para dentro da sala.", isCorrect: false, correction: "Ele entrou na sala.", category: "semantics" },
   { sentence: "A menina ganhou um presente.", isCorrect: true, correction: "", category: "semantics" },
+  { sentence: "Ele saiu para fora correndo.", isCorrect: false, correction: "Ele saiu correndo.", category: "semantics" },
+  { sentence: "A sua opinião pessoal é válida.", isCorrect: false, correction: "A sua opinião é válida. (opinião já é pessoal)", category: "semantics" },
+  { sentence: "Ela tem um elo de ligação com ele.", isCorrect: false, correction: "Ela tem um elo com ele.", category: "semantics" },
+  { sentence: "O resultado final foi positivo.", isCorrect: false, correction: "O resultado foi positivo.", category: "semantics" },
+  { sentence: "O livro é muito interessante.", isCorrect: true, correction: "", category: "semantics" },
+  { sentence: "Ele retrocedeu para trás.", isCorrect: false, correction: "Ele retrocedeu.", category: "semantics" },
+  { sentence: "O consenso geral foi favorável.", isCorrect: false, correction: "O consenso foi favorável.", category: "semantics" },
+  { sentence: "Ela é a protagonista principal.", isCorrect: false, correction: "Ela é a protagonista.", category: "semantics" },
+  { sentence: "A criança brinca no jardim.", isCorrect: true, correction: "", category: "semantics" },
+  { sentence: "Ele criou uma nova inovação.", isCorrect: false, correction: "Ele criou uma inovação.", category: "semantics" },
+  { sentence: "O projeto está bem elaborado.", isCorrect: true, correction: "", category: "semantics" },
+  { sentence: "É grátis e não paga nada.", isCorrect: false, correction: "É grátis. / Não paga nada.", category: "semantics" },
+  { sentence: "O panorama geral é positivo.", isCorrect: false, correction: "O panorama é positivo.", category: "semantics" },
+  { sentence: "Ela fez uma breve introdução.", isCorrect: true, correction: "", category: "semantics" },
+  { sentence: "Ele tem certeza absoluta.", isCorrect: false, correction: "Ele tem certeza.", category: "semantics" },
   
+  // Pontuação (20 questões)
   { sentence: "João disse eu vou sair.", isCorrect: false, correction: "João disse: \"Eu vou sair.\"", category: "punctuation" },
   { sentence: "Maria, a professora, chegou.", isCorrect: true, correction: "", category: "punctuation" },
   { sentence: "Comprei: maçãs laranjas e bananas.", isCorrect: false, correction: "Comprei maçãs, laranjas e bananas.", category: "punctuation" },
   { sentence: "Ele perguntou, onde você vai?", isCorrect: false, correction: "Ele perguntou: \"Onde você vai?\"", category: "punctuation" },
   { sentence: "O menino, que corria, caiu.", isCorrect: true, correction: "", category: "punctuation" },
+  { sentence: "Pedro meu amigo chegou.", isCorrect: false, correction: "Pedro, meu amigo, chegou.", category: "punctuation" },
+  { sentence: "A casa, que era velha desabou.", isCorrect: false, correction: "A casa, que era velha, desabou.", category: "punctuation" },
+  { sentence: "Ela disse: \"Vou embora.\"", isCorrect: true, correction: "", category: "punctuation" },
+  { sentence: "São Paulo, a maior cidade brasileira, é movimentada.", isCorrect: true, correction: "", category: "punctuation" },
+  { sentence: "Estudei muito portanto passei.", isCorrect: false, correction: "Estudei muito; portanto, passei.", category: "punctuation" },
+  { sentence: "Não sei, se ele vem.", isCorrect: false, correction: "Não sei se ele vem.", category: "punctuation" },
+  { sentence: "Quero saber: quando você chega?", isCorrect: false, correction: "Quero saber quando você chega.", category: "punctuation" },
+  { sentence: "Ele trabalha; ela estuda.", isCorrect: true, correction: "", category: "punctuation" },
+  { sentence: "A menina alegre sorriu.", isCorrect: true, correction: "", category: "punctuation" },
+  { sentence: "Preciso de: papel caneta e lápis.", isCorrect: false, correction: "Preciso de papel, caneta e lápis.", category: "punctuation" },
+  { sentence: "Contudo, ele não desistiu.", isCorrect: true, correction: "", category: "punctuation" },
+  { sentence: "Ela correu e chegou a tempo.", isCorrect: true, correction: "", category: "punctuation" },
+  { sentence: "Marcos: o aluno novo, sentou-se.", isCorrect: false, correction: "Marcos, o aluno novo, sentou-se.", category: "punctuation" },
+  { sentence: "Amanhã, irei à escola.", isCorrect: true, correction: "", category: "punctuation" },
+  { sentence: "O livro que comprei é bom.", isCorrect: true, correction: "", category: "punctuation" },
 ];
 
 export function PortugueseGame({ topic, onExit }: PortugueseGameProps) {
@@ -71,16 +151,22 @@ export function PortugueseGame({ topic, onExit }: PortugueseGameProps) {
       ? questions 
       : questions.filter(q => q.category === topic);
     
-    const available = filtered.filter((_, i) => !usedQuestions.has(i));
-    const pool = available.length > 0 ? available : filtered;
+    // Map filtered questions to their original indices
+    const indexedFiltered = filtered.map(q => ({
+      question: q,
+      originalIndex: questions.indexOf(q)
+    }));
+    
+    // Filter out already used questions
+    const available = indexedFiltered.filter(item => !usedQuestions.has(item.originalIndex));
+    const pool = available.length > 0 ? available : indexedFiltered;
     
     const randomIndex = Math.floor(Math.random() * pool.length);
-    const question = pool[randomIndex];
+    const selected = pool[randomIndex];
     
-    const originalIndex = questions.indexOf(question);
-    setUsedQuestions(prev => new Set([...Array.from(prev), originalIndex]));
+    setUsedQuestions(prev => new Set([...Array.from(prev), selected.originalIndex]));
     
-    return question;
+    return selected.question;
   };
 
   useEffect(() => {

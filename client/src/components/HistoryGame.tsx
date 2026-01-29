@@ -24,6 +24,7 @@ interface Question {
 const TOTAL_QUESTIONS = 10;
 
 const questions: Question[] = [
+  // Brasil (20 questões)
   { statement: "O Brasil foi descoberto por Pedro Álvares Cabral em 1500.", isCorrect: true, explanation: "Pedro Álvares Cabral chegou ao Brasil em 22 de abril de 1500.", category: "brazil" },
   { statement: "A Independência do Brasil ocorreu em 7 de setembro de 1822.", isCorrect: true, explanation: "Dom Pedro I proclamou a independência às margens do rio Ipiranga.", category: "brazil" },
   { statement: "O Brasil foi uma monarquia durante todo o século XIX.", isCorrect: false, explanation: "O Brasil se tornou República em 15 de novembro de 1889.", category: "brazil" },
@@ -31,7 +32,21 @@ const questions: Question[] = [
   { statement: "Getúlio Vargas governou o Brasil por 15 anos consecutivos.", isCorrect: true, explanation: "Vargas governou de 1930 a 1945, um total de 15 anos.", category: "brazil" },
   { statement: "A ditadura militar no Brasil durou de 1964 a 1985.", isCorrect: true, explanation: "O regime militar começou com o golpe de 1964 e terminou em 1985.", category: "brazil" },
   { statement: "Brasília foi inaugurada como capital em 1950.", isCorrect: false, explanation: "Brasília foi inaugurada em 21 de abril de 1960 por JK.", category: "brazil" },
+  { statement: "A primeira capital do Brasil foi o Rio de Janeiro.", isCorrect: false, explanation: "A primeira capital foi Salvador, de 1549 a 1763.", category: "brazil" },
+  { statement: "A Inconfidência Mineira ocorreu em 1789.", isCorrect: true, explanation: "A Inconfidência Mineira foi uma conspiração em 1789.", category: "brazil" },
+  { statement: "Tiradentes foi o único condenado à morte na Inconfidência.", isCorrect: true, explanation: "Tiradentes foi enforcado em 21 de abril de 1792.", category: "brazil" },
+  { statement: "O Brasil foi governado por Portugal até 1808.", isCorrect: false, explanation: "A família real chegou ao Brasil em 1808, mas a independência só ocorreu em 1822.", category: "brazil" },
+  { statement: "D. Pedro II foi o último imperador do Brasil.", isCorrect: true, explanation: "D. Pedro II reinou de 1840 a 1889.", category: "brazil" },
+  { statement: "A Guerra do Paraguai durou de 1864 a 1870.", isCorrect: true, explanation: "Foi o maior conflito armado da América do Sul.", category: "brazil" },
+  { statement: "O voto feminino no Brasil foi permitido em 1932.", isCorrect: true, explanation: "O Código Eleitoral de 1932 permitiu o voto feminino.", category: "brazil" },
+  { statement: "A Era Vargas começou com a Revolução de 1930.", isCorrect: true, explanation: "Getúlio Vargas assumiu o poder após a Revolução de 1930.", category: "brazil" },
+  { statement: "O AI-5 foi decretado em 1968.", isCorrect: true, explanation: "O Ato Institucional nº 5 foi o mais repressivo da ditadura.", category: "brazil" },
+  { statement: "As Diretas Já ocorreram em 1984.", isCorrect: true, explanation: "O movimento pedia eleições diretas para presidente.", category: "brazil" },
+  { statement: "A Constituição atual do Brasil é de 1988.", isCorrect: true, explanation: "A Constituição Cidadã foi promulgada em 5 de outubro de 1988.", category: "brazil" },
+  { statement: "O Plano Real foi criado em 1990.", isCorrect: false, explanation: "O Plano Real foi implementado em 1994.", category: "brazil" },
+  { statement: "Fernando Henrique Cardoso foi o primeiro presidente eleito após a redemocratização.", isCorrect: false, explanation: "Fernando Collor foi o primeiro, em 1989.", category: "brazil" },
   
+  // Mundial (20 questões)
   { statement: "As Pirâmides do Egito foram construídas pelos romanos.", isCorrect: false, explanation: "As pirâmides foram construídas pelos egípcios há mais de 4.500 anos.", category: "world" },
   { statement: "A Revolução Francesa começou em 1789.", isCorrect: true, explanation: "A queda da Bastilha em 14 de julho de 1789 marca o início.", category: "world" },
   { statement: "A Primeira Guerra Mundial começou em 1914.", isCorrect: true, explanation: "A guerra começou em 1914 após o assassinato de Franz Ferdinand.", category: "world" },
@@ -40,12 +55,40 @@ const questions: Question[] = [
   { statement: "A Guerra Fria foi um conflito armado direto entre EUA e URSS.", isCorrect: false, explanation: "A Guerra Fria foi um conflito ideológico sem confronto direto.", category: "world" },
   { statement: "Cristóvão Colombo chegou à América em 1492.", isCorrect: true, explanation: "Colombo chegou às Américas em 12 de outubro de 1492.", category: "world" },
   { statement: "A Revolução Industrial começou na França.", isCorrect: false, explanation: "A Revolução Industrial começou na Inglaterra no século XVIII.", category: "world" },
+  { statement: "Napoleão Bonaparte foi imperador da França.", isCorrect: true, explanation: "Napoleão governou a França de 1804 a 1814/1815.", category: "world" },
+  { statement: "A Grécia Antiga foi o berço da democracia.", isCorrect: true, explanation: "Atenas desenvolveu a democracia no século V a.C.", category: "world" },
+  { statement: "Alexandre, o Grande, conquistou a Índia.", isCorrect: false, explanation: "Alexandre chegou à Índia mas não a conquistou completamente.", category: "world" },
+  { statement: "O Renascimento começou na Itália.", isCorrect: true, explanation: "O Renascimento surgiu na Itália no século XIV.", category: "world" },
+  { statement: "A Reforma Protestante foi iniciada por Martinho Lutero.", isCorrect: true, explanation: "Lutero publicou as 95 teses em 1517.", category: "world" },
+  { statement: "A Revolução Russa ocorreu em 1917.", isCorrect: true, explanation: "A Revolução Bolchevique derrubou o czar em 1917.", category: "world" },
+  { statement: "Mahatma Gandhi liderou a independência da Índia.", isCorrect: true, explanation: "Gandhi liderou o movimento de independência até 1947.", category: "world" },
+  { statement: "Nelson Mandela foi presidente da África do Sul.", isCorrect: true, explanation: "Mandela governou de 1994 a 1999.", category: "world" },
+  { statement: "A China se tornou comunista em 1959.", isCorrect: false, explanation: "A China se tornou comunista em 1949 com Mao Zedong.", category: "world" },
+  { statement: "A União Soviética foi dissolvida em 1991.", isCorrect: true, explanation: "A URSS deixou de existir em 26 de dezembro de 1991.", category: "world" },
+  { statement: "O Holocausto ocorreu durante a Primeira Guerra Mundial.", isCorrect: false, explanation: "O Holocausto ocorreu durante a Segunda Guerra Mundial.", category: "world" },
+  { statement: "A Grande Muralha da China foi construída para defesa.", isCorrect: true, explanation: "Foi construída para proteger contra invasões nômades.", category: "world" },
   
+  // Datas (20 questões)
   { statement: "A queda do Muro de Berlim aconteceu em 1989.", isCorrect: true, explanation: "O Muro de Berlim caiu em 9 de novembro de 1989.", category: "dates" },
   { statement: "O homem pisou na Lua pela primeira vez em 1969.", isCorrect: true, explanation: "Neil Armstrong pisou na Lua em 20 de julho de 1969.", category: "dates" },
   { statement: "A Declaração Universal dos Direitos Humanos foi em 1948.", isCorrect: true, explanation: "Foi adotada pela ONU em 10 de dezembro de 1948.", category: "dates" },
   { statement: "A ONU foi fundada em 1955.", isCorrect: false, explanation: "A ONU foi fundada em 24 de outubro de 1945.", category: "dates" },
   { statement: "O ataque às Torres Gêmeas ocorreu em 2001.", isCorrect: true, explanation: "Os ataques de 11 de setembro aconteceram em 2001.", category: "dates" },
+  { statement: "A internet foi criada na década de 1960.", isCorrect: true, explanation: "A ARPANET, precursora da internet, surgiu em 1969.", category: "dates" },
+  { statement: "O primeiro computador foi inventado em 1930.", isCorrect: false, explanation: "O ENIAC, primeiro computador, foi criado em 1946.", category: "dates" },
+  { statement: "A bomba atômica foi lançada em Hiroshima em 1945.", isCorrect: true, explanation: "A bomba foi lançada em 6 de agosto de 1945.", category: "dates" },
+  { statement: "A Primeira Guerra Mundial terminou em 1918.", isCorrect: true, explanation: "O armistício foi assinado em 11 de novembro de 1918.", category: "dates" },
+  { statement: "O Euro foi introduzido em 2002.", isCorrect: false, explanation: "O Euro foi introduzido em 1 de janeiro de 1999 (notas em 2002).", category: "dates" },
+  { statement: "A Copa do Mundo foi criada em 1930.", isCorrect: true, explanation: "A primeira Copa foi no Uruguai em 1930.", category: "dates" },
+  { statement: "Os Jogos Olímpicos modernos começaram em 1896.", isCorrect: true, explanation: "A primeira Olimpíada moderna foi em Atenas, 1896.", category: "dates" },
+  { statement: "O iPhone foi lançado em 2007.", isCorrect: true, explanation: "Steve Jobs apresentou o iPhone em 9 de janeiro de 2007.", category: "dates" },
+  { statement: "O Facebook foi criado em 2004.", isCorrect: true, explanation: "Mark Zuckerberg lançou o Facebook em 4 de fevereiro de 2004.", category: "dates" },
+  { statement: "A Wikipédia foi lançada em 2001.", isCorrect: true, explanation: "A Wikipédia foi lançada em 15 de janeiro de 2001.", category: "dates" },
+  { statement: "O Google foi fundado em 1998.", isCorrect: true, explanation: "Larry Page e Sergey Brin fundaram o Google em 1998.", category: "dates" },
+  { statement: "A clonagem da ovelha Dolly foi em 1996.", isCorrect: true, explanation: "Dolly nasceu em 5 de julho de 1996.", category: "dates" },
+  { statement: "O acidente nuclear de Chernobyl foi em 1986.", isCorrect: true, explanation: "O desastre ocorreu em 26 de abril de 1986.", category: "dates" },
+  { statement: "O Titanic afundou em 1912.", isCorrect: true, explanation: "O Titanic afundou em 15 de abril de 1912.", category: "dates" },
+  { statement: "A penicilina foi descoberta em 1928.", isCorrect: true, explanation: "Alexander Fleming descobriu a penicilina em 1928.", category: "dates" },
 ];
 
 export function HistoryGame({ topic, onExit }: HistoryGameProps) {
@@ -64,16 +107,22 @@ export function HistoryGame({ topic, onExit }: HistoryGameProps) {
       ? questions 
       : questions.filter(q => q.category === topic);
     
-    const available = filtered.filter((_, i) => !usedQuestions.has(questions.indexOf(filtered[i])));
-    const pool = available.length > 0 ? available : filtered;
+    // Map filtered questions to their original indices
+    const indexedFiltered = filtered.map(q => ({
+      question: q,
+      originalIndex: questions.indexOf(q)
+    }));
+    
+    // Filter out already used questions
+    const available = indexedFiltered.filter(item => !usedQuestions.has(item.originalIndex));
+    const pool = available.length > 0 ? available : indexedFiltered;
     
     const randomIndex = Math.floor(Math.random() * pool.length);
-    const question = pool[randomIndex];
+    const selected = pool[randomIndex];
     
-    const originalIndex = questions.indexOf(question);
-    setUsedQuestions(prev => new Set([...Array.from(prev), originalIndex]));
+    setUsedQuestions(prev => new Set([...Array.from(prev), selected.originalIndex]));
     
-    return question;
+    return selected.question;
   };
 
   useEffect(() => {
