@@ -31,41 +31,49 @@ export function MathGame({ operation, onExit }: MathGameProps) {
   const [userAnswer, setUserAnswer] = useState("");
   const [feedback, setFeedback] = useState<"correct" | "wrong" | null>(null);
   const [isGameFinished, setIsGameFinished] = useState(false);
+  const [usedQuestions, setUsedQuestions] = useState<Set<string>>(new Set());
   const inputRef = useRef<HTMLInputElement>(null);
   
   const createResult = useCreateResult();
 
   const generateQuestion = (): Question => {
     let num1 = 0, num2 = 0, answer = 0, operator = "+";
+    let questionKey = "";
+    let attempts = 0;
+    const maxAttempts = 100;
 
-    switch (operation) {
-      case 'addition':
-        num1 = Math.floor(Math.random() * 10);
-        num2 = Math.floor(Math.random() * 10);
-        answer = num1 + num2;
-        operator = "+";
-        break;
-      case 'subtraction':
-        num1 = Math.floor(Math.random() * 10);
-        num2 = Math.floor(Math.random() * (num1 + 1)); // Ensure num2 <= num1 for non-negative result
-        answer = num1 - num2;
-        operator = "-";
-        break;
-      case 'multiplication':
-        num1 = Math.floor(Math.random() * 10);
-        num2 = Math.floor(Math.random() * 10);
-        answer = num1 * num2;
-        operator = "×";
-        break;
-      case 'division':
-        // Ensure whole number division: answer * num2 = num1
-        num2 = Math.floor(Math.random() * 9) + 1; // 1-9 (avoid divide by zero)
-        answer = Math.floor(Math.random() * 10); // 0-9
-        num1 = num2 * answer;
-        operator = "÷";
-        break;
-    }
+    do {
+      switch (operation) {
+        case 'addition':
+          num1 = Math.floor(Math.random() * 10);
+          num2 = Math.floor(Math.random() * 10);
+          answer = num1 + num2;
+          operator = "+";
+          break;
+        case 'subtraction':
+          num1 = Math.floor(Math.random() * 10);
+          num2 = Math.floor(Math.random() * (num1 + 1));
+          answer = num1 - num2;
+          operator = "-";
+          break;
+        case 'multiplication':
+          num1 = Math.floor(Math.random() * 10);
+          num2 = Math.floor(Math.random() * 10);
+          answer = num1 * num2;
+          operator = "×";
+          break;
+        case 'division':
+          num2 = Math.floor(Math.random() * 9) + 1;
+          answer = Math.floor(Math.random() * 10);
+          num1 = num2 * answer;
+          operator = "÷";
+          break;
+      }
+      questionKey = `${num1}${operator}${num2}`;
+      attempts++;
+    } while (usedQuestions.has(questionKey) && attempts < maxAttempts);
 
+    setUsedQuestions(prev => new Set([...Array.from(prev), questionKey]));
     return { num1, num2, answer, operator };
   };
 

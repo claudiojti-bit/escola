@@ -68,6 +68,7 @@ export function GeographyGame({ topic, onExit }: GeographyGameProps) {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [feedback, setFeedback] = useState<"correct" | "wrong" | null>(null);
   const [isGameFinished, setIsGameFinished] = useState(false);
+  const [usedQuestions, setUsedQuestions] = useState<Set<string>>(new Set());
   
   const createResult = useCreateResult();
 
@@ -77,7 +78,10 @@ export function GeographyGame({ topic, onExit }: GeographyGameProps) {
       : topic;
 
     if (questionType === 'brazilCapitals') {
-      const item = brazilStates[Math.floor(Math.random() * brazilStates.length)];
+      const availableStates = brazilStates.filter(s => !usedQuestions.has(`brazil-${s.state}`));
+      const pool = availableStates.length > 0 ? availableStates : brazilStates;
+      const item = pool[Math.floor(Math.random() * pool.length)];
+      setUsedQuestions(prev => new Set([...Array.from(prev), `brazil-${item.state}`]));
       const wrongOptions = brazilStates
         .filter(s => s.capital !== item.capital)
         .sort(() => Math.random() - 0.5)
@@ -92,7 +96,10 @@ export function GeographyGame({ topic, onExit }: GeographyGameProps) {
         category: 'brazilCapitals',
       };
     } else if (questionType === 'worldCapitals') {
-      const item = worldCountries[Math.floor(Math.random() * worldCountries.length)];
+      const availableCountries = worldCountries.filter(c => !usedQuestions.has(`world-${c.country}`));
+      const pool = availableCountries.length > 0 ? availableCountries : worldCountries;
+      const item = pool[Math.floor(Math.random() * pool.length)];
+      setUsedQuestions(prev => new Set([...Array.from(prev), `world-${item.country}`]));
       const wrongOptions = worldCountries
         .filter(c => c.capital !== item.capital)
         .sort(() => Math.random() - 0.5)
@@ -107,7 +114,10 @@ export function GeographyGame({ topic, onExit }: GeographyGameProps) {
         category: 'worldCapitals',
       };
     } else {
-      const item = worldCountries[Math.floor(Math.random() * worldCountries.length)];
+      const availableCountries = worldCountries.filter(c => !usedQuestions.has(`continent-${c.country}`));
+      const pool = availableCountries.length > 0 ? availableCountries : worldCountries;
+      const item = pool[Math.floor(Math.random() * pool.length)];
+      setUsedQuestions(prev => new Set([...Array.from(prev), `continent-${item.country}`]));
       const correctContinent = item.continent.includes('/') ? item.continent.split('/')[0] : item.continent;
       const wrongOptions = continents
         .filter(c => c !== correctContinent && c !== item.continent)

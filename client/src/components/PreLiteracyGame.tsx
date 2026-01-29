@@ -51,11 +51,18 @@ export function PreLiteracyGame({ questionType, onExit }: PreLiteracyGameProps) 
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [feedback, setFeedback] = useState<"correct" | "wrong" | null>(null);
   const [isGameFinished, setIsGameFinished] = useState(false);
+  const [usedWordIndices, setUsedWordIndices] = useState<Set<number>>(new Set());
   
   const createResult = useCreateResult();
 
   const generateQuestion = (): Question => {
-    const wordData = words[Math.floor(Math.random() * words.length)];
+    const availableIndices = words.map((_, i) => i).filter(i => !usedWordIndices.has(i));
+    const wordIndex = availableIndices.length > 0 
+      ? availableIndices[Math.floor(Math.random() * availableIndices.length)]
+      : Math.floor(Math.random() * words.length);
+    
+    setUsedWordIndices(prev => new Set([...Array.from(prev), wordIndex]));
+    const wordData = words[wordIndex];
     
     switch (questionType) {
       case 'firstLetter': {

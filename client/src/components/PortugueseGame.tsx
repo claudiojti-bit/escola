@@ -78,7 +78,7 @@ export function PortugueseGame({ topic, onExit }: PortugueseGameProps) {
     const question = pool[randomIndex];
     
     const originalIndex = questions.indexOf(question);
-    setUsedQuestions(prev => new Set([...prev, originalIndex]));
+    setUsedQuestions(prev => new Set([...Array.from(prev), originalIndex]));
     
     return question;
   };
