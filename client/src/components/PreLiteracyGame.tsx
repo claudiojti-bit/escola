@@ -250,22 +250,28 @@ export function PreLiteracyGame({ questionType, onExit }: PreLiteracyGameProps) 
         };
       }
       case 'completeWord': {
-        const missing = wordData.word.slice(1);
-        const firstLetter = wordData.firstLetter;
-        // Opções erradas devem vir de palavras com LETRAS INICIAIS DIFERENTES
-        // para garantir que nenhuma combinação forme uma palavra válida
-        const wrongOptions = words
-          .filter(w => w.firstLetter !== firstLetter) // Só palavras com letra inicial diferente
-          .map(w => w.word.slice(1))
-          .filter((suffix, index, self) => self.indexOf(suffix) === index) // Remove duplicatas
+        const suffix = wordData.word.slice(1);
+        const correctLetter = wordData.firstLetter;
+        
+        // Encontra todas as letras que, combinadas com este sufixo, formam palavras válidas
+        const validLettersForSuffix = new Set(
+          words
+            .filter(w => w.word.slice(1) === suffix)
+            .map(w => w.firstLetter)
+        );
+        
+        // Opções erradas são letras que NÃO formam palavras válidas com este sufixo
+        const wrongOptions = allLetters
+          .filter(letter => !validLettersForSuffix.has(letter))
           .sort(() => Math.random() - 0.5)
           .slice(0, 3);
-        const options = [missing, ...wrongOptions].sort(() => Math.random() - 0.5);
+        
+        const options = [correctLetter, ...wrongOptions].sort(() => Math.random() - 0.5);
         return {
           type: 'completeWord',
-          prompt: `Complete: ${firstLetter}___`,
+          prompt: `Qual letra completa: ___${suffix}?`,
           options,
-          correctAnswer: missing,
+          correctAnswer: correctLetter,
         };
       }
       case 'soundMatch': {
