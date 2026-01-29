@@ -90,7 +90,7 @@ const worldCountries = [
   { country: 'Filipinas', capital: 'Manila', continent: 'Ásia' },
   { country: 'Malásia', capital: 'Kuala Lumpur', continent: 'Ásia' },
   { country: 'Singapura', capital: 'Singapura', continent: 'Ásia' },
-  { country: 'Turquia', capital: 'Ancara', continent: 'Ásia' },
+  { country: 'Turquia', capital: 'Ancara', continent: 'Europa/Ásia' },
   { country: 'Arábia Saudita', capital: 'Riad', continent: 'Ásia' },
   { country: 'Israel', capital: 'Jerusalém', continent: 'Ásia' },
   
@@ -106,17 +106,19 @@ const worldCountries = [
   { country: 'Equador', capital: 'Quito', continent: 'América do Sul' },
   { country: 'Guiana', capital: 'Georgetown', continent: 'América do Sul' },
   
-  // América do Norte e Central (10 países)
+  // América do Norte (3 países)
   { country: 'Estados Unidos', capital: 'Washington D.C.', continent: 'América do Norte' },
   { country: 'Canadá', capital: 'Ottawa', continent: 'América do Norte' },
   { country: 'México', capital: 'Cidade do México', continent: 'América do Norte' },
-  { country: 'Cuba', capital: 'Havana', continent: 'América do Norte' },
-  { country: 'Jamaica', capital: 'Kingston', continent: 'América do Norte' },
-  { country: 'Haiti', capital: 'Porto Príncipe', continent: 'América do Norte' },
-  { country: 'Guatemala', capital: 'Cidade da Guatemala', continent: 'América do Norte' },
-  { country: 'Costa Rica', capital: 'San José', continent: 'América do Norte' },
-  { country: 'Panamá', capital: 'Cidade do Panamá', continent: 'América do Norte' },
-  { country: 'República Dominicana', capital: 'Santo Domingo', continent: 'América do Norte' },
+  
+  // América Central e Caribe (7 países)
+  { country: 'Cuba', capital: 'Havana', continent: 'América Central' },
+  { country: 'Jamaica', capital: 'Kingston', continent: 'América Central' },
+  { country: 'Haiti', capital: 'Porto Príncipe', continent: 'América Central' },
+  { country: 'Guatemala', capital: 'Cidade da Guatemala', continent: 'América Central' },
+  { country: 'Costa Rica', capital: 'San José', continent: 'América Central' },
+  { country: 'Panamá', capital: 'Cidade do Panamá', continent: 'América Central' },
+  { country: 'República Dominicana', capital: 'Santo Domingo', continent: 'América Central' },
   
   // África (15 países)
   { country: 'Egito', capital: 'Cairo', continent: 'África' },
@@ -143,7 +145,7 @@ const worldCountries = [
   { country: 'Samoa', capital: 'Apia', continent: 'Oceania' },
 ];
 
-const continents = ['Europa', 'Ásia', 'África', 'América do Sul', 'América do Norte', 'Oceania'];
+const continents = ['Europa', 'Ásia', 'África', 'América do Sul', 'América do Norte', 'América Central', 'Oceania'];
 
 export function GeographyGame({ topic, onExit }: GeographyGameProps) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
