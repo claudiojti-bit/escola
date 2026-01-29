@@ -20,7 +20,7 @@ export type CreateResultRequest = InsertResult;
 export type ResultResponse = Result;
 export type ResultsListResponse = Result[];
 
-export const subjects = ['math', 'preLiteracy', 'portuguese', 'geography', 'history'] as const;
+export const subjects = ['preLiteracy', 'portuguese', 'math', 'geography', 'history'] as const;
 export type Subject = typeof subjects[number];
 
 export const subjectLabels: Record<Subject, string> = {
