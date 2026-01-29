@@ -198,13 +198,15 @@ export function GeographyGame({ topic, onExit }: GeographyGameProps) {
         category: 'worldCapitals',
       };
     } else {
-      const availableCountries = worldCountries.filter(c => !usedQuestions.has(`continent-${c.country}`));
-      const pool = availableCountries.length > 0 ? availableCountries : worldCountries;
+      // Exclui países transcontinentais (com "/" no campo continente) para evitar ambiguidade
+      const countriesWithSingleContinent = worldCountries.filter(c => !c.continent.includes('/'));
+      const availableCountries = countriesWithSingleContinent.filter(c => !usedQuestions.has(`continent-${c.country}`));
+      const pool = availableCountries.length > 0 ? availableCountries : countriesWithSingleContinent;
       const item = pool[Math.floor(Math.random() * pool.length)];
       setUsedQuestions(prev => new Set([...Array.from(prev), `continent-${item.country}`]));
-      const correctContinent = item.continent.includes('/') ? item.continent.split('/')[0] : item.continent;
+      const correctContinent = item.continent;
       const wrongOptions = continents
-        .filter(c => c !== correctContinent && c !== item.continent)
+        .filter(c => c !== correctContinent)
         .sort(() => Math.random() - 0.5)
         .slice(0, 2);
       const options = [correctContinent, ...wrongOptions].sort(() => Math.random() - 0.5);
