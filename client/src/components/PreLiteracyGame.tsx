@@ -25,7 +25,7 @@ interface Question {
 const TOTAL_QUESTIONS = 10;
 
 const words = [
-  // Animais (60 palavras)
+  // Animais (60 palavras) - com acentuação correta
   { word: 'GATO', syllables: ['GA', 'TO'], firstLetter: 'G' },
   { word: 'PATO', syllables: ['PA', 'TO'], firstLetter: 'P' },
   { word: 'SAPO', syllables: ['SA', 'PO'], firstLetter: 'S' },
@@ -39,9 +39,8 @@ const words = [
   { word: 'ANTA', syllables: ['AN', 'TA'], firstLetter: 'A' },
   { word: 'PUMA', syllables: ['PU', 'MA'], firstLetter: 'P' },
   { word: 'URSO', syllables: ['UR', 'SO'], firstLetter: 'U' },
-  { word: 'LEAO', syllables: ['LE', 'AO'], firstLetter: 'L' },
-  { word: 'ONCA', syllables: ['ON', 'CA'], firstLetter: 'O' },
-  { word: 'PEGA', syllables: ['PE', 'GA'], firstLetter: 'P' },
+  { word: 'LEÃO', syllables: ['LE', 'ÃO'], firstLetter: 'L' },
+  { word: 'ONÇA', syllables: ['ON', 'ÇA'], firstLetter: 'O' },
   { word: 'MICO', syllables: ['MI', 'CO'], firstLetter: 'M' },
   { word: 'PERU', syllables: ['PE', 'RU'], firstLetter: 'P' },
   { word: 'RENA', syllables: ['RE', 'NA'], firstLetter: 'R' },
@@ -55,21 +54,21 @@ const words = [
   { word: 'FORMIGA', syllables: ['FOR', 'MI', 'GA'], firstLetter: 'F' },
   { word: 'GIRAFA', syllables: ['GI', 'RA', 'FA'], firstLetter: 'G' },
   { word: 'GALINHA', syllables: ['GA', 'LI', 'NHA'], firstLetter: 'G' },
-  { word: 'HIPOPOTAMO', syllables: ['HI', 'PO', 'PO', 'TA', 'MO'], firstLetter: 'H' },
+  { word: 'HIPOPÓTAMO', syllables: ['HI', 'PO', 'PÓ', 'TA', 'MO'], firstLetter: 'H' },
   { word: 'IGUANA', syllables: ['I', 'GUA', 'NA'], firstLetter: 'I' },
-  { word: 'JACARE', syllables: ['JA', 'CA', 'RE'], firstLetter: 'J' },
+  { word: 'JACARÉ', syllables: ['JA', 'CA', 'RÉ'], firstLetter: 'J' },
   { word: 'LAGARTO', syllables: ['LA', 'GAR', 'TO'], firstLetter: 'L' },
   { word: 'MACACO', syllables: ['MA', 'CA', 'CO'], firstLetter: 'M' },
   { word: 'MORCEGO', syllables: ['MOR', 'CE', 'GO'], firstLetter: 'M' },
   { word: 'MOSCA', syllables: ['MOS', 'CA'], firstLetter: 'M' },
-  { word: 'PASSARO', syllables: ['PA', 'SSA', 'RO'], firstLetter: 'P' },
+  { word: 'PÁSSARO', syllables: ['PÁS', 'SA', 'RO'], firstLetter: 'P' },
   { word: 'PEIXE', syllables: ['PEI', 'XE'], firstLetter: 'P' },
   { word: 'PORCO', syllables: ['POR', 'CO'], firstLetter: 'P' },
   { word: 'RAPOSA', syllables: ['RA', 'PO', 'SA'], firstLetter: 'R' },
-  { word: 'SABIA', syllables: ['SA', 'BI', 'A'], firstLetter: 'S' },
+  { word: 'SABIÁ', syllables: ['SA', 'BI', 'Á'], firstLetter: 'S' },
   { word: 'TARTARUGA', syllables: ['TAR', 'TA', 'RU', 'GA'], firstLetter: 'T' },
   { word: 'TIGRE', syllables: ['TI', 'GRE'], firstLetter: 'T' },
-  { word: 'TUBARAO', syllables: ['TU', 'BA', 'RAO'], firstLetter: 'T' },
+  { word: 'TUBARÃO', syllables: ['TU', 'BA', 'RÃO'], firstLetter: 'T' },
   { word: 'URUBU', syllables: ['U', 'RU', 'BU'], firstLetter: 'U' },
   { word: 'ZEBRA', syllables: ['ZE', 'BRA'], firstLetter: 'Z' },
   { word: 'CAVALO', syllables: ['CA', 'VA', 'LO'], firstLetter: 'C' },
@@ -81,13 +80,14 @@ const words = [
   { word: 'GOLFINHO', syllables: ['GOL', 'FI', 'NHO'], firstLetter: 'G' },
   { word: 'VEADO', syllables: ['VE', 'A', 'DO'], firstLetter: 'V' },
   { word: 'CORUJA', syllables: ['CO', 'RU', 'JA'], firstLetter: 'C' },
-  { word: 'AGUIA', syllables: ['A', 'GUI', 'A'], firstLetter: 'A' },
-  { word: 'FALCAO', syllables: ['FAL', 'CAO'], firstLetter: 'F' },
+  { word: 'ÁGUIA', syllables: ['Á', 'GUI', 'A'], firstLetter: 'Á' },
+  { word: 'FALCÃO', syllables: ['FAL', 'CÃO'], firstLetter: 'F' },
   { word: 'POMBO', syllables: ['POM', 'BO'], firstLetter: 'P' },
   { word: 'GANSO', syllables: ['GAN', 'SO'], firstLetter: 'G' },
   { word: 'CISNE', syllables: ['CIS', 'NE'], firstLetter: 'C' },
+  { word: 'FAISÃO', syllables: ['FAI', 'SÃO'], firstLetter: 'F' },
   
-  // Objetos (60 palavras)
+  // Objetos (60 palavras) - com acentuação correta
   { word: 'BOLA', syllables: ['BO', 'LA'], firstLetter: 'B' },
   { word: 'CASA', syllables: ['CA', 'SA'], firstLetter: 'C' },
   { word: 'MALA', syllables: ['MA', 'LA'], firstLetter: 'M' },
@@ -110,7 +110,7 @@ const words = [
   { word: 'LATA', syllables: ['LA', 'TA'], firstLetter: 'L' },
   { word: 'BOLSA', syllables: ['BOL', 'SA'], firstLetter: 'B' },
   { word: 'CAIXA', syllables: ['CAI', 'XA'], firstLetter: 'C' },
-  { word: 'CALCA', syllables: ['CAL', 'CA'], firstLetter: 'C' },
+  { word: 'CALÇA', syllables: ['CAL', 'ÇA'], firstLetter: 'C' },
   { word: 'CAMISA', syllables: ['CA', 'MI', 'SA'], firstLetter: 'C' },
   { word: 'CANETA', syllables: ['CA', 'NE', 'TA'], firstLetter: 'C' },
   { word: 'CADEIRA', syllables: ['CA', 'DEI', 'RA'], firstLetter: 'C' },
@@ -120,25 +120,25 @@ const words = [
   { word: 'GARFO', syllables: ['GAR', 'FO'], firstLetter: 'G' },
   { word: 'JANELA', syllables: ['JA', 'NE', 'LA'], firstLetter: 'J' },
   { word: 'JARRA', syllables: ['JA', 'RRA'], firstLetter: 'J' },
-  { word: 'LAMPADA', syllables: ['LAM', 'PA', 'DA'], firstLetter: 'L' },
-  { word: 'LAPIS', syllables: ['LA', 'PIS'], firstLetter: 'L' },
+  { word: 'LÂMPADA', syllables: ['LÂM', 'PA', 'DA'], firstLetter: 'L' },
+  { word: 'LÁPIS', syllables: ['LÁ', 'PIS'], firstLetter: 'L' },
   { word: 'LIVRO', syllables: ['LI', 'VRO'], firstLetter: 'L' },
   { word: 'MOCHILA', syllables: ['MO', 'CHI', 'LA'], firstLetter: 'M' },
   { word: 'PANELA', syllables: ['PA', 'NE', 'LA'], firstLetter: 'P' },
   { word: 'PAPEL', syllables: ['PA', 'PEL'], firstLetter: 'P' },
   { word: 'PRATO', syllables: ['PRA', 'TO'], firstLetter: 'P' },
   { word: 'PORTA', syllables: ['POR', 'TA'], firstLetter: 'P' },
-  { word: 'RELOGIO', syllables: ['RE', 'LO', 'GIO'], firstLetter: 'R' },
+  { word: 'RELÓGIO', syllables: ['RE', 'LÓ', 'GIO'], firstLetter: 'R' },
   { word: 'ROUPA', syllables: ['ROU', 'PA'], firstLetter: 'R' },
   { word: 'SAPATO', syllables: ['SA', 'PA', 'TO'], firstLetter: 'S' },
-  { word: 'SOFA', syllables: ['SO', 'FA'], firstLetter: 'S' },
+  { word: 'SOFÁ', syllables: ['SO', 'FÁ'], firstLetter: 'S' },
   { word: 'TAPETE', syllables: ['TA', 'PE', 'TE'], firstLetter: 'T' },
   { word: 'TELEFONE', syllables: ['TE', 'LE', 'FO', 'NE'], firstLetter: 'T' },
-  { word: 'TELEVISAO', syllables: ['TE', 'LE', 'VI', 'SAO'], firstLetter: 'T' },
+  { word: 'TELEVISÃO', syllables: ['TE', 'LE', 'VI', 'SÃO'], firstLetter: 'T' },
   { word: 'TESOURA', syllables: ['TE', 'SOU', 'RA'], firstLetter: 'T' },
   { word: 'VASSOURA', syllables: ['VA', 'SSOU', 'RA'], firstLetter: 'V' },
   { word: 'VESTIDO', syllables: ['VES', 'TI', 'DO'], firstLetter: 'V' },
-  { word: 'XICARA', syllables: ['XI', 'CA', 'RA'], firstLetter: 'X' },
+  { word: 'XÍCARA', syllables: ['XÍ', 'CA', 'RA'], firstLetter: 'X' },
   { word: 'BONECA', syllables: ['BO', 'NE', 'CA'], firstLetter: 'B' },
   { word: 'CARRINHO', syllables: ['CA', 'RRI', 'NHO'], firstLetter: 'C' },
   { word: 'BICICLETA', syllables: ['BI', 'CI', 'CLE', 'TA'], firstLetter: 'B' },
@@ -147,9 +147,9 @@ const words = [
   { word: 'PASTA', syllables: ['PAS', 'TA'], firstLetter: 'P' },
   { word: 'TOALHA', syllables: ['TO', 'A', 'LHA'], firstLetter: 'T' },
   { word: 'ESPELHO', syllables: ['ES', 'PE', 'LHO'], firstLetter: 'E' },
-  { word: 'FOGAO', syllables: ['FO', 'GAO'], firstLetter: 'F' },
+  { word: 'FOGÃO', syllables: ['FO', 'GÃO'], firstLetter: 'F' },
   
-  // Natureza e outros (60 palavras)
+  // Natureza e outros (60 palavras) - com acentuação correta
   { word: 'ROSA', syllables: ['RO', 'SA'], firstLetter: 'R' },
   { word: 'NEVE', syllables: ['NE', 'VE'], firstLetter: 'N' },
   { word: 'NUVEM', syllables: ['NU', 'VEM'], firstLetter: 'N' },
@@ -170,8 +170,8 @@ const words = [
   { word: 'GOTA', syllables: ['GO', 'TA'], firstLetter: 'G' },
   { word: 'BICA', syllables: ['BI', 'CA'], firstLetter: 'B' },
   { word: 'CABO', syllables: ['CA', 'BO'], firstLetter: 'C' },
-  { word: 'AGUA', syllables: ['A', 'GUA'], firstLetter: 'A' },
-  { word: 'ARVORE', syllables: ['AR', 'VO', 'RE'], firstLetter: 'A' },
+  { word: 'ÁGUA', syllables: ['Á', 'GUA'], firstLetter: 'Á' },
+  { word: 'ÁRVORE', syllables: ['ÁR', 'VO', 'RE'], firstLetter: 'Á' },
   { word: 'BANANA', syllables: ['BA', 'NA', 'NA'], firstLetter: 'B' },
   { word: 'CARRO', syllables: ['CA', 'RRO'], firstLetter: 'C' },
   { word: 'CHUVA', syllables: ['CHU', 'VA'], firstLetter: 'C' },
@@ -180,10 +180,10 @@ const words = [
   { word: 'FOLHA', syllables: ['FO', 'LHA'], firstLetter: 'F' },
   { word: 'FRUTA', syllables: ['FRU', 'TA'], firstLetter: 'F' },
   { word: 'LARANJA', syllables: ['LA', 'RAN', 'JA'], firstLetter: 'L' },
-  { word: 'LIMAO', syllables: ['LI', 'MAO'], firstLetter: 'L' },
+  { word: 'LIMÃO', syllables: ['LI', 'MÃO'], firstLetter: 'L' },
   { word: 'LUA', syllables: ['LU', 'A'], firstLetter: 'L' },
   { word: 'MAR', syllables: ['MAR'], firstLetter: 'M' },
-  { word: 'MACA', syllables: ['MA', 'CA'], firstLetter: 'M' },
+  { word: 'MAÇÃ', syllables: ['MA', 'ÇÃ'], firstLetter: 'M' },
   { word: 'MELANCIA', syllables: ['ME', 'LAN', 'CI', 'A'], firstLetter: 'M' },
   { word: 'MONTANHA', syllables: ['MON', 'TA', 'NHA'], firstLetter: 'M' },
   { word: 'MORANGO', syllables: ['MO', 'RAN', 'GO'], firstLetter: 'M' },
@@ -205,15 +205,18 @@ const words = [
   { word: 'ROXO', syllables: ['RO', 'XO'], firstLetter: 'R' },
   { word: 'CINZA', syllables: ['CIN', 'ZA'], firstLetter: 'C' },
   { word: 'MARROM', syllables: ['MA', 'RROM'], firstLetter: 'M' },
-  { word: 'LARANJA', syllables: ['LA', 'RAN', 'JA'], firstLetter: 'L' },
   { word: 'JARDIM', syllables: ['JAR', 'DIM'], firstLetter: 'J' },
   { word: 'PARQUE', syllables: ['PAR', 'QUE'], firstLetter: 'P' },
   { word: 'ESCOLA', syllables: ['ES', 'CO', 'LA'], firstLetter: 'E' },
   { word: 'IGREJA', syllables: ['I', 'GRE', 'JA'], firstLetter: 'I' },
+  { word: 'ÓCULOS', syllables: ['Ó', 'CU', 'LOS'], firstLetter: 'Ó' },
 ];
 
-const allLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'T', 'V'];
+const allLetters = ['A', 'Á', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'L', 'M', 'N', 'O', 'Ó', 'P', 'R', 'S', 'T', 'U', 'V', 'X', 'Z'];
 const allSyllables = ['BA', 'BO', 'CA', 'DA', 'FA', 'FO', 'GA', 'JA', 'LA', 'LU', 'MA', 'NA', 'PA', 'PO', 'RA', 'SA', 'TA', 'TU', 'VA'];
+
+// Conjunto de todas as palavras válidas para evitar ambiguidades no modo Completar
+const allWordSet = new Set(words.map(w => w.word));
 
 export function PreLiteracyGame({ questionType, onExit }: PreLiteracyGameProps) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -248,11 +251,18 @@ export function PreLiteracyGame({ questionType, onExit }: PreLiteracyGameProps) 
       }
       case 'completeWord': {
         const missing = wordData.word.slice(1);
-        const wrongOptions = words.filter(w => w.word !== wordData.word).sort(() => Math.random() - 0.5).slice(0, 3).map(w => w.word.slice(1));
+        const firstLetter = wordData.firstLetter;
+        // Filtra sufixos que NÃO formam palavras válidas quando combinados com a primeira letra
+        const wrongOptions = words
+          .filter(w => w.word !== wordData.word)
+          .map(w => w.word.slice(1))
+          .filter(suffix => !allWordSet.has(firstLetter + suffix)) // Evita ambiguidades
+          .sort(() => Math.random() - 0.5)
+          .slice(0, 3);
         const options = [missing, ...wrongOptions].sort(() => Math.random() - 0.5);
         return {
           type: 'completeWord',
-          prompt: `Complete: ${wordData.firstLetter}___`,
+          prompt: `Complete: ${firstLetter}___`,
           options,
           correctAnswer: missing,
         };
