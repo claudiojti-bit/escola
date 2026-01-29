@@ -252,11 +252,12 @@ export function PreLiteracyGame({ questionType, onExit }: PreLiteracyGameProps) 
       case 'completeWord': {
         const missing = wordData.word.slice(1);
         const firstLetter = wordData.firstLetter;
-        // Filtra sufixos que NÃO formam palavras válidas quando combinados com a primeira letra
+        // Opções erradas devem vir de palavras com LETRAS INICIAIS DIFERENTES
+        // para garantir que nenhuma combinação forme uma palavra válida
         const wrongOptions = words
-          .filter(w => w.word !== wordData.word)
+          .filter(w => w.firstLetter !== firstLetter) // Só palavras com letra inicial diferente
           .map(w => w.word.slice(1))
-          .filter(suffix => !allWordSet.has(firstLetter + suffix)) // Evita ambiguidades
+          .filter((suffix, index, self) => self.indexOf(suffix) === index) // Remove duplicatas
           .sort(() => Math.random() - 0.5)
           .slice(0, 3);
         const options = [missing, ...wrongOptions].sort(() => Math.random() - 0.5);
