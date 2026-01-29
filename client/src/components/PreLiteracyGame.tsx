@@ -7,7 +7,33 @@ import { Progress } from "@/components/ui/progress";
 import { useCreateResult } from "@/hooks/use-results";
 import { Loader2, ArrowRight, CheckCircle2, XCircle, Trophy, Home, RotateCcw } from "lucide-react";
 
-type QuestionType = 'firstLetter' | 'completeWord' | 'soundMatch' | 'initialSyllable';
+type QuestionType = 'firstLetter' | 'completeWord' | 'soundMatch' | 'initialSyllable' | 'animals';
+
+// Importar imagens de animais
+import gatoImg from '@/assets/animals/gato.jpg';
+import cachorroImg from '@/assets/animals/cachorro.jpg';
+import leaoImg from '@/assets/animals/leao.jpg';
+import elefanteImg from '@/assets/animals/elefante.jpg';
+import girafaImg from '@/assets/animals/girafa.jpg';
+import macacoImg from '@/assets/animals/macaco.jpg';
+import zebraImg from '@/assets/animals/zebra.jpg';
+import ursoImg from '@/assets/animals/urso.jpg';
+import coelhoImg from '@/assets/animals/coelho.jpg';
+import patoImg from '@/assets/animals/pato.jpg';
+
+// Dados dos animais com imagens
+const animalData = [
+  { name: 'GATO', image: gatoImg },
+  { name: 'CACHORRO', image: cachorroImg },
+  { name: 'LEÃO', image: leaoImg },
+  { name: 'ELEFANTE', image: elefanteImg },
+  { name: 'GIRAFA', image: girafaImg },
+  { name: 'MACACO', image: macacoImg },
+  { name: 'ZEBRA', image: zebraImg },
+  { name: 'URSO', image: ursoImg },
+  { name: 'COELHO', image: coelhoImg },
+  { name: 'PATO', image: patoImg },
+];
 
 interface PreLiteracyGameProps {
   questionType: QuestionType;
@@ -289,6 +315,7 @@ export function PreLiteracyGame({ questionType, onExit }: PreLiteracyGameProps) 
   const [isGameFinished, setIsGameFinished] = useState(false);
   const [usedWordIndices, setUsedWordIndices] = useState<Set<number>>(new Set());
   const [usedCompleteWordIndices, setUsedCompleteWordIndices] = useState<Set<number>>(new Set());
+  const [usedAnimalIndices, setUsedAnimalIndices] = useState<Set<number>>(new Set());
   
   const createResult = useCreateResult();
 
@@ -356,6 +383,32 @@ export function PreLiteracyGame({ questionType, onExit }: PreLiteracyGameProps) 
           prompt: `Qual é a sílaba inicial de "${wordData.word}"?`,
           options,
           correctAnswer: wordData.syllables[0],
+        };
+      }
+      case 'animals': {
+        // Seleciona um animal que ainda não foi usado
+        const availableAnimalIndices = animalData.map((_, i) => i).filter(i => !usedAnimalIndices.has(i));
+        const selectedAnimalIndex = availableAnimalIndices.length > 0 
+          ? availableAnimalIndices[Math.floor(Math.random() * availableAnimalIndices.length)]
+          : Math.floor(Math.random() * animalData.length);
+        
+        setUsedAnimalIndices(prev => new Set([...Array.from(prev), selectedAnimalIndex]));
+        const correctAnimal = animalData[selectedAnimalIndex];
+        
+        // Opções erradas são outros animais aleatórios
+        const wrongOptions = animalData
+          .filter(a => a.name !== correctAnimal.name)
+          .sort(() => Math.random() - 0.5)
+          .slice(0, 3)
+          .map(a => a.name);
+        
+        const options = [correctAnimal.name, ...wrongOptions].sort(() => Math.random() - 0.5);
+        return {
+          type: 'animals',
+          prompt: 'Qual é o nome deste animal?',
+          image: correctAnimal.image,
+          options,
+          correctAnswer: correctAnimal.name,
         };
       }
     }
@@ -460,7 +513,18 @@ export function PreLiteracyGame({ questionType, onExit }: PreLiteracyGameProps) 
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
           >
-            <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">{currentQuestion.prompt}</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-center mb-6">{currentQuestion.prompt}</h2>
+            
+            {currentQuestion.image && (
+              <div className="flex justify-center mb-6">
+                <img 
+                  src={currentQuestion.image} 
+                  alt="Animal para identificar" 
+                  className="w-48 h-48 md:w-64 md:h-64 object-cover rounded-2xl shadow-lg border-4 border-white"
+                  data-testid="img-animal"
+                />
+              </div>
+            )}
             
             <div className="grid grid-cols-2 gap-4">
               {currentQuestion.options.map((option) => (
