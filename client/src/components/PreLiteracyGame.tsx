@@ -218,6 +218,68 @@ const allSyllables = ['BA', 'BO', 'CA', 'DA', 'FA', 'FO', 'GA', 'JA', 'LA', 'LU'
 // Conjunto de todas as palavras válidas para evitar ambiguidades no modo Completar
 const allWordSet = new Set(words.map(w => w.word));
 
+// Palavras com sufixos ÚNICOS para o modo Completar
+// Cada sufixo só forma UMA palavra válida em português
+const uniqueSuffixWords = [
+  { word: 'ZEBRA', suffix: 'EBRA', correctLetter: 'Z' },
+  { word: 'JACARÉ', suffix: 'ACARÉ', correctLetter: 'J' },
+  { word: 'XÍCARA', suffix: 'ÍCARA', correctLetter: 'X' },
+  { word: 'HIPOPÓTAMO', suffix: 'IPOPÓTAMO', correctLetter: 'H' },
+  { word: 'ELEFANTE', suffix: 'LEFANTE', correctLetter: 'E' },
+  { word: 'GIRAFA', suffix: 'IRAFA', correctLetter: 'G' },
+  { word: 'FORMIGA', suffix: 'ORMIGA', correctLetter: 'F' },
+  { word: 'TARTARUGA', suffix: 'ARTARUGA', correctLetter: 'T' },
+  { word: 'MORCEGO', suffix: 'ORCEGO', correctLetter: 'M' },
+  { word: 'COELHO', suffix: 'OELHO', correctLetter: 'C' },
+  { word: 'CACHORRO', suffix: 'ACHORRO', correctLetter: 'C' },
+  { word: 'GOLFINHO', suffix: 'OLFINHO', correctLetter: 'G' },
+  { word: 'TUBARÃO', suffix: 'UBARÃO', correctLetter: 'T' },
+  { word: 'CORUJA', suffix: 'ORUJA', correctLetter: 'C' },
+  { word: 'ÁGUIA', suffix: 'GUIA', correctLetter: 'Á' },
+  { word: 'URUBU', suffix: 'RUBU', correctLetter: 'U' },
+  { word: 'ARARA', suffix: 'RARA', correctLetter: 'A' },
+  { word: 'MACACO', suffix: 'ACACO', correctLetter: 'M' },
+  { word: 'RAPOSA', suffix: 'APOSA', correctLetter: 'R' },
+  { word: 'GALINHA', suffix: 'ALINHA', correctLetter: 'G' },
+  { word: 'OVELHA', suffix: 'VELHA', correctLetter: 'O' },
+  { word: 'CAVALO', suffix: 'AVALO', correctLetter: 'C' },
+  { word: 'BURRO', suffix: 'URRO', correctLetter: 'B' },
+  { word: 'IGUANA', suffix: 'GUANA', correctLetter: 'I' },
+  { word: 'LAGARTO', suffix: 'AGARTO', correctLetter: 'L' },
+  { word: 'PÁSSARO', suffix: 'ÁSSARO', correctLetter: 'P' },
+  { word: 'BALEIA', suffix: 'ALEIA', correctLetter: 'B' },
+  { word: 'TELEFONE', suffix: 'ELEFONE', correctLetter: 'T' },
+  { word: 'TELEVISÃO', suffix: 'ELEVISÃO', correctLetter: 'T' },
+  { word: 'BICICLETA', suffix: 'ICICLETA', correctLetter: 'B' },
+  { word: 'CADEIRA', suffix: 'ADEIRA', correctLetter: 'C' },
+  { word: 'CADERNO', suffix: 'ADERNO', correctLetter: 'C' },
+  { word: 'ESPELHO', suffix: 'SPELHO', correctLetter: 'E' },
+  { word: 'JANELA', suffix: 'ANELA', correctLetter: 'J' },
+  { word: 'MOCHILA', suffix: 'OCHILA', correctLetter: 'M' },
+  { word: 'TESOURA', suffix: 'ESOURA', correctLetter: 'T' },
+  { word: 'VASSOURA', suffix: 'ASSOURA', correctLetter: 'V' },
+  { word: 'LÂMPADA', suffix: 'ÂMPADA', correctLetter: 'L' },
+  { word: 'RELÓGIO', suffix: 'ELÓGIO', correctLetter: 'R' },
+  { word: 'VESTIDO', suffix: 'ESTIDO', correctLetter: 'V' },
+  { word: 'SAPATO', suffix: 'APATO', correctLetter: 'S' },
+  { word: 'CAMISA', suffix: 'AMISA', correctLetter: 'C' },
+  { word: 'BONECA', suffix: 'ONECA', correctLetter: 'B' },
+  { word: 'CARRINHO', suffix: 'ARRINHO', correctLetter: 'C' },
+  { word: 'BANANA', suffix: 'ANANA', correctLetter: 'B' },
+  { word: 'LARANJA', suffix: 'ARANJA', correctLetter: 'L' },
+  { word: 'MORANGO', suffix: 'ORANGO', correctLetter: 'M' },
+  { word: 'MELANCIA', suffix: 'ELANCIA', correctLetter: 'M' },
+  { word: 'MONTANHA', suffix: 'ONTANHA', correctLetter: 'M' },
+  { word: 'ESTRELA', suffix: 'STRELA', correctLetter: 'E' },
+  { word: 'ÁRVORE', suffix: 'RVORE', correctLetter: 'Á' },
+  { word: 'JARDIM', suffix: 'ARDIM', correctLetter: 'J' },
+  { word: 'PARQUE', suffix: 'ARQUE', correctLetter: 'P' },
+  { word: 'ESCOLA', suffix: 'SCOLA', correctLetter: 'E' },
+  { word: 'IGREJA', suffix: 'GREJA', correctLetter: 'I' },
+  { word: 'AMARELO', suffix: 'MARELO', correctLetter: 'A' },
+  { word: 'VERMELHO', suffix: 'ERMELHO', correctLetter: 'V' },
+];
+
 export function PreLiteracyGame({ questionType, onExit }: PreLiteracyGameProps) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
@@ -226,6 +288,7 @@ export function PreLiteracyGame({ questionType, onExit }: PreLiteracyGameProps) 
   const [feedback, setFeedback] = useState<"correct" | "wrong" | null>(null);
   const [isGameFinished, setIsGameFinished] = useState(false);
   const [usedWordIndices, setUsedWordIndices] = useState<Set<number>>(new Set());
+  const [usedCompleteWordIndices, setUsedCompleteWordIndices] = useState<Set<number>>(new Set());
   
   const createResult = useCreateResult();
 
@@ -250,19 +313,18 @@ export function PreLiteracyGame({ questionType, onExit }: PreLiteracyGameProps) 
         };
       }
       case 'completeWord': {
-        const suffix = wordData.word.slice(1);
-        const correctLetter = wordData.firstLetter;
+        // Usa palavras com sufixos únicos (que só formam uma palavra válida em português)
+        const availableIndices = uniqueSuffixWords.map((_, i) => i).filter(i => !usedCompleteWordIndices.has(i));
+        const selectedIndex = availableIndices.length > 0 
+          ? availableIndices[Math.floor(Math.random() * availableIndices.length)]
+          : Math.floor(Math.random() * uniqueSuffixWords.length);
         
-        // Encontra todas as letras que, combinadas com este sufixo, formam palavras válidas
-        const validLettersForSuffix = new Set(
-          words
-            .filter(w => w.word.slice(1) === suffix)
-            .map(w => w.firstLetter)
-        );
+        setUsedCompleteWordIndices(prev => new Set([...Array.from(prev), selectedIndex]));
+        const { suffix, correctLetter } = uniqueSuffixWords[selectedIndex];
         
-        // Opções erradas são letras que NÃO formam palavras válidas com este sufixo
+        // Opções erradas são letras aleatórias que não são a correta
         const wrongOptions = allLetters
-          .filter(letter => !validLettersForSuffix.has(letter))
+          .filter(letter => letter !== correctLetter)
           .sort(() => Math.random() - 0.5)
           .slice(0, 3);
         
